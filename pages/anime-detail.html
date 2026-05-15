@@ -120,9 +120,11 @@
             color: var(--gray-dark);
             margin-bottom: -5px;
         }
-    </style>
+</style>
 </head>
 <body>
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
 
     <!-- Navigation -->
     <nav id="navbar" class="manga-nav">
@@ -143,10 +145,11 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="watchlist.html">Watchlist</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li id="nav-auth-btn"></li>
                 <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">🌙 NIGHT MODE</button></li>
             </ul>
         </div>
-    <!-- AdSense Below Navbar -->
+    </nav>
     <div class="container center" style="margin: 1rem auto;">
         <div style="padding: 10px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BELOW NAVBAR</div>
     </div>
@@ -496,7 +499,6 @@
             }
         });
     </script>
-    <script src="../script.js"></script>
     <script src="../search.js?v=5.0"></script>
 </body>
 </html>

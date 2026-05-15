@@ -54,6 +54,7 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="watchlist.html">Watchlist</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li id="nav-auth-btn"></li>
                 <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">🌙 NIGHT MODE</button></li>
             </ul>
         </div>
@@ -69,12 +70,25 @@
             <div class="big-kanji" style="right: -20px; top: -20px; opacity: 0.1;">心</div>
             <p class="hero-tag">PERSONAL COLLECTION</p>
             <h1 class="hero-title" style="font-size: clamp(2.5rem, 10vw, 5rem); margin-bottom: 1rem;">MY WATCHLIST.</h1>
-            <p class="hero-sub">Your curated transmission of must-watch titles.</p>
+            <p class="hero-sub" id="watchlist-subtitle">Your curated transmission of must-watch titles.</p>
         </div>
 
         <div id="watchlist-container">
             <div id="loading" class="cat-panel" style="text-align: center; padding: 4rem;">
                 <h3>SCANNING DATABASE...</h3>
+            </div>
+
+            <!-- Login gate — shown when no user is logged in -->
+            <div id="login-gate" style="display:none;">
+                <div class="auth-gate">
+                    <span class="auth-gate-kanji">鍵</span>
+                    <h2>LOGIN REQUIRED.</h2>
+                    <p>Create a free account to save your personal watchlist and access it anytime, anywhere.</p>
+                    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                        <a href="login.html" class="btn btn-manga" style="text-decoration:none;">LOGIN</a>
+                        <a href="login.html#signup" class="btn btn-manga-alt" style="text-decoration:none;">CREATE ACCOUNT</a>
+                    </div>
+                </div>
             </div>
 
             <div id="empty-state" class="cat-panel" style="display: none; text-align: center; padding: 6rem 2rem;">
@@ -107,15 +121,33 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script src="../auth.js"></script>
     <script src="../search.js?v=5.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('watchlist-grid');
-            const emptyState = document.getElementById('empty-state');
-            const loading = document.getElementById('loading');
+            const grid        = document.getElementById('watchlist-grid');
+            const emptyState  = document.getElementById('empty-state');
+            const loading     = document.getElementById('loading');
+            const loginGate   = document.getElementById('login-gate');
+            const subtitle    = document.getElementById('watchlist-subtitle');
+
+            const user = window.Auth ? window.Auth.getCurrentUser() : null;
+
+            // ── Not logged in: show gate ──────────────────────────
+            if (!user) {
+                loading.style.display = 'none';
+                loginGate.style.display = 'block';
+                return;
+            }
+
+            // ── Logged in: personalise header ─────────────────────
+            subtitle.textContent = `${user.name}'s curated transmission of must-watch titles.`;
 
             function renderWatchlist() {
-                const watchlist = JSON.parse(localStorage.getItem('anime-watchlist') || '[]');
+                const watchlist = window.Auth
+                    ? window.Auth.getUserWatchlist()
+                    : JSON.parse(localStorage.getItem('anime-watchlist') || '[]');
+
                 loading.style.display = 'none';
 
                 if (watchlist.length === 0) {
@@ -126,11 +158,11 @@
 
                 emptyState.style.display = 'none';
                 grid.style.display = 'grid';
-                
+
                 grid.innerHTML = watchlist.map(anime => {
                     const source = isNaN(anime.id) ? 'local' : 'jikan';
                     const score = anime.rating || 'N/A';
-                    
+
                     return `
                         <article class="cat-panel" style="padding: 0; overflow: hidden; position: relative; height: 100%; display: flex; flex-direction: column; border-width: 2px; box-shadow: 4px 4px 0 var(--black);">
                             <div style="position: relative; aspect-ratio: 2/3; overflow: hidden; border-bottom: 2px solid var(--black);">
@@ -153,9 +185,15 @@
             }
 
             window.removeFromWatchlist = (id) => {
-                let watchlist = JSON.parse(localStorage.getItem('anime-watchlist') || '[]');
+                let watchlist = window.Auth
+                    ? window.Auth.getUserWatchlist()
+                    : JSON.parse(localStorage.getItem('anime-watchlist') || '[]');
                 watchlist = watchlist.filter(a => String(a.id) !== String(id));
-                localStorage.setItem('anime-watchlist', JSON.stringify(watchlist));
+                if (window.Auth) {
+                    window.Auth.saveUserWatchlist(watchlist);
+                } else {
+                    localStorage.setItem('anime-watchlist', JSON.stringify(watchlist));
+                }
                 showToast('Removed from Watchlist', 'info');
                 renderWatchlist();
             };
