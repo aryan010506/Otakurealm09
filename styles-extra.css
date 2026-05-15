@@ -1,9 +1,9 @@
-/* ============================================================
-   OTAKU REALM � Manga / Brutalist Aesthetic
+﻿/* ============================================================
+   OTAKU REALM — Manga / Brutalist Aesthetic
    Mobile-First Responsive CSS  (v4.2)
    ============================================================ */
 
-/* -- Variables --------------------------------------------------- */
+/* ── Variables ─────────────────────────────────────────────────── */
 :root {
     --black: #050505;
     --white: #fdfdfd;
@@ -18,7 +18,7 @@
     --accent: #ff0055;
 }
 
-/* -- Nav User Dropdown (manga theme) --------------------------- */
+/* ── Nav User Dropdown (manga theme) ─────────────────────────── */
 .nav-user-menu { position: relative; display: inline-block; }
 .nav-user-dropdown {
     display: none;
@@ -56,7 +56,7 @@
 .nav-user-dropdown .dropdown-item:hover { background: var(--black);
     color: var(--white); }
 
-/* -- Comment Section ---------------------------------------------- */
+/* ── Comment Section ────────────────────────────────────────────── */
 .comment-form-wrap {
     border: 4px solid var(--black);
     background: var(--white);
@@ -139,7 +139,7 @@ body.dark-mode .comment-card { background: #1a1a1a; border-color: var(--gray-dar
 body.dark-mode .comment-form-wrap { background: #1a1a1a; border-color: var(--gray-dark); }
 body.dark-mode .comment-form-wrap textarea { background: #111; color: var(--black); border-color: var(--gray-dark); }
 
-/* -- Profile Page ------------------------------------------------- */
+/* ── Profile Page ───────────────────────────────────────────────── */
 .profile-card {
     border: 4px solid var(--black);
     background: var(--white);

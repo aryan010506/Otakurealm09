@@ -1,12 +1,12 @@
-/* ============================================================
-   OTAKU REALM ? Comment System (localStorage-based)
+﻿/* ============================================================
+   OTAKU REALM — Comment System (localStorage-based)
    Auto-injects a comment section on all article & anime pages.
    Comments stored per-page; linked to authenticated users.
    ============================================================ */
 
 const COMMENT_PREFIX = 'otaku-comments-';
 
-// -- Storage helpers --------------------------------------------
+// ── Storage helpers ────────────────────────────────────────────
 function getPageComments(pageId) {
     return JSON.parse(localStorage.getItem(COMMENT_PREFIX + pageId) || '[]');
 }
@@ -14,13 +14,13 @@ function savePageComments(pageId, comments) {
     localStorage.setItem(COMMENT_PREFIX + pageId, JSON.stringify(comments));
 }
 
-// -- Add a comment ----------------------------------------------
+// ── Add a comment ──────────────────────────────────────────────
 function addComment(pageId, pageTitle, text) {
     if (!window.Auth) return { success: false, error: 'Auth not loaded.' };
     const user = window.Auth.getCurrentUser();
     if (!user) return { success: false, error: 'LOGIN_REQUIRED' };
     const trimmed = text ? text.trim() : '';
-    if (trimmed.length < 2)  return { success: false, error: 'Comment is too short.' };
+    if (trimmed.length < 2)   return { success: false, error: 'Comment is too short.' };
     if (trimmed.length > 500) return { success: false, error: 'Max 500 characters allowed.' };
 
     const comments = getPageComments(pageId);
@@ -38,7 +38,7 @@ function addComment(pageId, pageTitle, text) {
     return { success: true, comment };
 }
 
-// -- Get ALL comments by a specific user (across all pages) ----
+// ── Get ALL comments by a specific user (across all pages) ────
 function getAllUserComments(email) {
     const keys = Object.keys(localStorage).filter(k => k.startsWith(COMMENT_PREFIX));
     const results = [];
@@ -49,7 +49,7 @@ function getAllUserComments(email) {
     return results.sort((a, b) => b.timestamp - a.timestamp);
 }
 
-// -- Utils ------------------------------------------------------
+// ── Utils ──────────────────────────────────────────────────────
 function escapeHtml(str) {
     return String(str)
         .replace(/&/g,'&amp;').replace(/</g,'&lt;')
@@ -62,24 +62,24 @@ function formatTime(ts) {
          + d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
 }
 
-// -- Render single comment card HTML ---------------------------
+// ── Render single comment card HTML ───────────────────────────
 function renderCommentCard(c) {
     return `
         <div class="comment-card" id="c-${c.id}">
             <div class="comment-header">
-                <span class="comment-author">? ${escapeHtml(c.userName.toUpperCase())}</span>
+                <span class="comment-author">⚡ ${escapeHtml(c.userName.toUpperCase())}</span>
                 <span class="comment-time">${formatTime(c.timestamp)}</span>
             </div>
             <p class="comment-text">${escapeHtml(c.text)}</p>
         </div>`;
 }
 
-// -- Get path to login page -------------------------------------
+// ── Get path to login page ─────────────────────────────────────
 function getLoginPath() {
     return window.location.pathname.includes('/pages/') ? 'login.html' : 'pages/login.html';
 }
 
-// -- Inject full comment section before <footer> ---------------
+// ── Inject full comment section before <footer> ───────────────
 function injectCommentSection(pageId, pageTitle) {
     const footer = document.querySelector('footer');
     if (!footer) return;
@@ -92,16 +92,16 @@ function injectCommentSection(pageId, pageTitle) {
                <textarea id="comment-input" placeholder="SHARE YOUR THOUGHTS ON ${escapeHtml(pageTitle.toUpperCase())}..." maxlength="500" rows="4"></textarea>
                <div class="comment-form-footer">
                    <span id="comment-char-count" style="font-size:0.75rem;font-weight:700;opacity:0.6;">0 / 500</span>
-                   <button id="comment-submit" class="btn btn-manga" style="font-size:0.8rem;padding:0.3rem 1rem;">POST COMMENT ??</button>
+                   <button id="comment-submit" class="btn btn-manga" style="font-size:0.8rem;padding:0.3rem 1rem;">POST COMMENT ✏️</button>
                </div>
            </div>`
         : `<div class="comment-login-prompt">
                <a href="${getLoginPath()}" class="btn btn-manga">LOGIN TO COMMENT</a>
-               <span style="font-size:0.85rem;font-weight:700;opacity:0.6;margin-left:1rem;">? Join the discussion!</span>
+               <span style="font-size:0.85rem;font-weight:700;opacity:0.6;margin-left:1rem;">— Join the discussion!</span>
            </div>`;
 
     const commentsHtml = comments.length === 0
-        ? '<p style="font-weight:700;opacity:0.5;text-align:center;padding:3rem 1rem;border:3px dashed var(--gray-light);">NO COMMENTS YET ? BE THE FIRST! ??</p>'
+        ? '<p style="font-weight:700;opacity:0.5;text-align:center;padding:3rem 1rem;border:3px dashed var(--gray-light);">NO COMMENTS YET — BE THE FIRST! 🎌</p>'
         : comments.map(renderCommentCard).join('');
 
     const section = document.createElement('section');
@@ -123,7 +123,6 @@ function injectCommentSection(pageId, pageTitle) {
 
     footer.parentNode.insertBefore(section, footer);
 
-    // -- Bind submit handler ------------------------------------
     if (user) {
         const input     = document.getElementById('comment-input');
         const counter   = document.getElementById('comment-char-count');
@@ -137,17 +136,15 @@ function injectCommentSection(pageId, pageTitle) {
             const result = addComment(pageId, pageTitle, input.value);
             if (result.success) {
                 const list = document.getElementById('comments-list');
-                // Remove empty-state message if present
                 const emptyMsg = list.querySelector('p');
                 if (emptyMsg) list.innerHTML = '';
                 list.insertAdjacentHTML('afterbegin', renderCommentCard(result.comment));
                 input.value = '';
                 counter.textContent = '0 / 500';
-                // Update comment count
                 const countEl = section.querySelector('.section-header p');
                 const newCount = getPageComments(pageId).length;
                 if (countEl) countEl.textContent = `${newCount} comment${newCount !== 1 ? 's' : ''} on this page`;
-                typeof showToast === 'function' && showToast('Comment posted! ??', 'success');
+                typeof showToast === 'function' && showToast('Comment posted! 💬', 'success');
             } else if (result.error === 'LOGIN_REQUIRED') {
                 typeof showToast === 'function' && showToast('Please log in to comment.', 'error');
             } else {
@@ -157,14 +154,12 @@ function injectCommentSection(pageId, pageTitle) {
     }
 }
 
-// -- Auto-detect page on DOMContentLoaded ---------------------
+// ── Auto-detect page on DOMContentLoaded ─────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait a tick so auth.js finishes
     setTimeout(() => {
         const path = window.location.pathname;
 
         const pageMap = {
-                        'index.html':      'Otaku Realm Homepage',
             'reviews':         'Reviews & Recommendations',
             'character-dives': 'Character Deep Dives',
             'watch-orders':    'Watch Orders',
@@ -173,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'explainers':      'Anime Explainers'
         };
 
-        if (path === '/' || path === '/index.html') { injectCommentSection('index', 'Otaku Realm Homepage'); return; }
+        if (path === '/' || path.includes('index.html')) { injectCommentSection('index', 'Otaku Realm Homepage'); return; }
 
         for (const [key, title] of Object.entries(pageMap)) {
             if (path.includes(key)) {
@@ -182,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Anime detail page ? use MAL ID as key
         if (path.includes('anime-detail')) {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('id');
@@ -194,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 });
 
-// -- Expose globally --------------------------------------------
+// ── Expose globally ────────────────────────────────────────────
 window.Comments = {
     getPageComments,
     getAllUserComments,
