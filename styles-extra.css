@@ -1,9 +1,9 @@
 /* ============================================================
-   OTAKU REALM — Manga / Brutalist Aesthetic
+   OTAKU REALM � Manga / Brutalist Aesthetic
    Mobile-First Responsive CSS  (v4.2)
    ============================================================ */
 
-/* ── Variables ─────────────────────────────────────────────────── */
+/* -- Variables --------------------------------------------------- */
 :root {
     --black: #050505;
     --white: #fdfdfd;
@@ -18,7 +18,7 @@
     --accent: #ff0055;
 }
 
-/* ── Nav User Dropdown (manga theme) ─────────────────────────── */
+/* -- Nav User Dropdown (manga theme) --------------------------- */
 .nav-user-menu { position: relative; display: inline-block; }
 .nav-user-dropdown {
     display: none;
@@ -26,11 +26,11 @@
     position: absolute;
     right: 0;
     top: calc(100% + 6px);
-    background: var(--black);
-    border: 3px solid var(--black);
+    background: var(--white);
+    border: var(--border-w) solid var(--black);
     min-width: 190px;
     z-index: 2000;
-    box-shadow: 5px 5px 0 var(--accent);
+    box-shadow: 6px 6px 0 var(--black);
 }
 .nav-user-dropdown.open { display: flex; }
 .nav-user-dropdown .dropdown-item {
@@ -41,21 +41,22 @@
     font-size: 0.78rem;
     font-weight: 900;
     letter-spacing: 0.06em;
-    color: var(--white);
+    color: var(--black);
     text-decoration: none;
     border: none;
     background: none;
     cursor: pointer;
     text-align: left;
     font-family: var(--font-main);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 2px solid var(--black);
     transition: background 0.15s;
     width: 100%;
 }
 .nav-user-dropdown .dropdown-item:last-child { border-bottom: none; }
-.nav-user-dropdown .dropdown-item:hover { background: rgba(255,255,255,0.12); }
+.nav-user-dropdown .dropdown-item:hover { background: var(--black);
+    color: var(--white); }
 
-/* ── Comment Section ────────────────────────────────────────────── */
+/* -- Comment Section ---------------------------------------------- */
 .comment-form-wrap {
     border: 4px solid var(--black);
     background: var(--white);
@@ -118,7 +119,7 @@
     font-size: 0.8rem;
     letter-spacing: 0.06em;
     background: var(--black);
-    color: var(--white);
+    color: var(--black);
     padding: 0.15rem 0.5rem;
 }
 .comment-time {
@@ -136,9 +137,9 @@
 }
 body.dark-mode .comment-card { background: #1a1a1a; border-color: var(--gray-dark); }
 body.dark-mode .comment-form-wrap { background: #1a1a1a; border-color: var(--gray-dark); }
-body.dark-mode .comment-form-wrap textarea { background: #111; color: var(--white); border-color: var(--gray-dark); }
+body.dark-mode .comment-form-wrap textarea { background: #111; color: var(--black); border-color: var(--gray-dark); }
 
-/* ── Profile Page ───────────────────────────────────────────────── */
+/* -- Profile Page ------------------------------------------------- */
 .profile-card {
     border: 4px solid var(--black);
     background: var(--white);
@@ -160,7 +161,7 @@ body.dark-mode .comment-form-wrap textarea { background: #111; color: var(--whit
     align-items: center;
     justify-content: center;
     background: var(--black);
-    color: var(--white);
+    color: var(--black);
     flex-shrink: 0;
     font-family: var(--font-main);
     font-weight: 900;
@@ -181,11 +182,11 @@ body.dark-mode .comment-form-wrap textarea { background: #111; color: var(--whit
     font-weight: 900;
     letter-spacing: 0.08em;
     background: var(--black);
-    color: var(--white);
+    color: var(--black);
     padding: 0.1rem 0.5rem;
     margin-bottom: 0.5rem;
     display: inline-block;
 }
 body.dark-mode .profile-card { background: #1a1a1a; }
 body.dark-mode .comment-history-item { background: #1a1a1a; }
-body.dark-mode .profile-meta-item strong { color: var(--white); }
+body.dark-mode .profile-meta-item strong { color: var(--black); }
