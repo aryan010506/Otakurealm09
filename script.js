@@ -216,13 +216,16 @@ if (contactForm) {
 
 // ===== WATCHLIST SYSTEM =====
 function initWatchlist() {
-    // Shared state
-    window.getWatchlist = () => JSON.parse(localStorage.getItem('anime-watchlist') || '[]');
-    
+    // Read watchlist — per-user if logged in, else global fallback
+    window.getWatchlist = () => {
+        if (window.Auth) return window.Auth.getUserWatchlist();
+        return JSON.parse(localStorage.getItem('anime-watchlist') || '[]');
+    };
+
     window.toggleWatchlist = (anime) => {
         let watchlist = window.getWatchlist();
         const index = watchlist.findIndex(a => String(a.id) === String(anime.id));
-        
+
         if (index > -1) {
             watchlist.splice(index, 1);
             showToast('Removed from Watchlist 🗑️', 'info');
@@ -230,8 +233,14 @@ function initWatchlist() {
             watchlist.push(anime);
             showToast('Added to Watchlist! ★', 'success');
         }
-        localStorage.setItem('anime-watchlist', JSON.stringify(watchlist));
-        
+
+        // Save — per-user if logged in, else global fallback
+        if (window.Auth) {
+            window.Auth.saveUserWatchlist(watchlist);
+        } else {
+            localStorage.setItem('anime-watchlist', JSON.stringify(watchlist));
+        }
+
         // Dispatch custom event for UI updates
         window.dispatchEvent(new CustomEvent('watchlistUpdated', { detail: { animeId: anime.id } }));
     };
