@@ -212,5 +212,60 @@
             <p>© 2026 OTAKU REALM. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
+    <script src="../firebase-init.js"></script>
+
+    <script src="../script.js"></script>
+    <script src="../search.js?v=5.0"></script>
+    <script src="../auth.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form[name="contact"]');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (!window.db) {
+                    typeof showToast === 'function' && showToast('Database connection error.', 'error');
+                    return;
+                }
+
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'TRANSMITTING...';
+                btn.disabled = true;
+
+                const formData = new FormData(form);
+                const messageData = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                    timestamp: Date.now()
+                };
+
+                try {
+                    await window.db.collection('messages').add(messageData);
+                    
+                    form.innerHTML = `
+                        <div style="text-align:center; padding: 3rem 1rem;">
+                            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--black);">TRANSMISSION SUCCESSFUL</h2>
+                            <p style="font-weight: 700; font-family: 'Roboto Mono', monospace;">Your message has been securely delivered to the Realm's database.</p>
+                            <button onclick="location.reload()" class="submit-btn" style="margin-top: 2rem; width: auto; padding: 0.5rem 2rem;">SEND ANOTHER</button>
+                        </div>
+                    `;
+                } catch (err) {
+                    console.error("Firebase Error:", err);
+                    typeof showToast === 'function' && showToast('Failed to send message.', 'error');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

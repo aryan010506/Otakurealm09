@@ -332,6 +332,11 @@
         </div>
     </main>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
+    <script src="../firebase-init.js"></script>
+
     <script src="../script.js"></script>
     <script src="../search.js?v=5.0"></script>
     <script src="../auth.js"></script>
@@ -372,17 +377,26 @@
         });
 
         // ── LOGIN ──
-        document.getElementById('login-form').addEventListener('submit', (e) => {
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const errEl = document.getElementById('login-error');
             errEl.style.display = 'none';
 
             const email = document.getElementById('login-email').value.trim().toLowerCase();
             const password = document.getElementById('login-password').value;
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'CONNECTING...';
+            btn.disabled = true;
 
-            const result = Auth.login({ email, password });
+            const result = await Auth.login({ email, password });
+            
+            btn.textContent = originalText;
+            btn.disabled = false;
+
             if (!result.success) {
-                errEl.textContent = '✕ ' + result.error;
+                errEl.textContent = '⚠️ ' + result.error;
                 errEl.style.display = 'block';
                 return;
             }
@@ -395,7 +409,7 @@
         });
 
         // ── SIGN UP ──
-        document.getElementById('signup-form').addEventListener('submit', (e) => {
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const errEl = document.getElementById('signup-error');
             errEl.style.display = 'none';
@@ -405,9 +419,18 @@
             const email    = document.getElementById('signup-email').value.trim().toLowerCase();
             const password = document.getElementById('signup-password').value;
 
-            const result = Auth.signup({ name, age, email, password });
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'CREATING...';
+            btn.disabled = true;
+
+            const result = await Auth.signup({ name, age, email, password });
+            
+            btn.textContent = originalText;
+            btn.disabled = false;
+
             if (!result.success) {
-                errEl.textContent = '✕ ' + result.error;
+                errEl.textContent = '⚠️ ' + result.error;
                 errEl.style.display = 'block';
                 return;
             }
