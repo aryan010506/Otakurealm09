@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up — Otaku Realm</title>
+    <meta name="description" content="Create your Otaku Realm account or log in to access your personal anime watchlist.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=4.1">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script>
+        if (localStorage.getItem('manga-theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
+    <style>
+        /* ── Auth Page Specific ─────────────────────────── */
+        .auth-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(6rem, 15vh, 9rem) 1.25rem 3rem;
+            background-image:
+                linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0),
+                linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+        .auth-card {
+            background: var(--white);
+            border: 4px solid var(--black);
+            box-shadow: 12px 12px 0 var(--black);
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            overflow: hidden;
+        }
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px;
+            width: 40px; height: 40px;
+            background: var(--black);
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+        }
+        .auth-kanji {
+            position: absolute;
+            bottom: -2rem; right: -0.5rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 10rem;
+            color: var(--gray-light);
+            font-weight: 900;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .auth-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 1.5rem 2rem 1rem;
+            position: relative; z-index: 1;
+        }
+        .auth-header p {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+        .auth-header h1 {
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            line-height: 1;
+        }
+
+        /* Tabs */
+        .auth-tabs {
+            display: flex;
+            border-bottom: 4px solid var(--black);
+            position: relative; z-index: 1;
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 0.85rem;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--gray-light);
+            color: var(--gray-dark);
+            border: none;
+            cursor: pointer;
+            border-right: 4px solid var(--black);
+            transition: background 0.15s, color 0.15s;
+            font-family: 'Outfit', sans-serif;
+        }
+        .auth-tab:last-child { border-right: none; }
+        .auth-tab.active {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Form */
+        .auth-form-wrap {
+            padding: 2rem;
+            position: relative; z-index: 1;
+        }
+        .auth-panel { display: none; }
+        .auth-panel.active { display: block; }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            color: var(--black);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 3px solid var(--black);
+            background: var(--white);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--black);
+            box-shadow: 3px 3px 0 var(--black);
+            transition: transform 0.1s, box-shadow 0.1s;
+            outline: none;
+        }
+        .form-group input:focus {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--black);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .auth-submit {
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+        }
+        .auth-error {
+            background: var(--black);
+            color: var(--white);
+            padding: 0.6rem 0.9rem;
+            font-weight: 800;
+            font-size: 0.85rem;
+            border: 2px solid var(--black);
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideIn 0.2s ease;
+        }
+        .auth-success {
+            background: var(--white);
+            color: var(--black);
+            border: 3px solid var(--black);
+            padding: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        .auth-success h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .auth-success p { font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; }
+
+        .form-hint {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-top: 1.25rem;
+            text-align: center;
+        }
+        .form-hint button {
+            background: none;
+            border: none;
+            font-weight: 900;
+            font-size: 0.78rem;
+            cursor: pointer;
+            text-decoration: underline;
+            color: var(--black);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Strength bar */
+        .pw-strength {
+            height: 5px;
+            border: 2px solid var(--black);
+            margin-top: 0.4rem;
+            background: var(--gray-light);
+            overflow: hidden;
+        }
+        .pw-strength-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--black);
+            transition: width 0.3s ease;
+        }
+
+        /* Dark mode adaptations */
+        html.dark-mode .auth-wrapper {
+            background-image:
+                linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111),
+                linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111);
+        }
+        html.dark-mode .auth-tab { background: #1a1a1a; color: var(--gray-dark); }
+        html.dark-mode .auth-tab.active { background: var(--white); }
+        html.dark-mode .form-group input { background: var(--white); color: var(--black); }
+
+        @media (max-width: 520px) {
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .auth-form-wrap { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="manga-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="logo">
+                <span class="logo-text">OTAKU</span>
+                <span class="logo-accent">REALM</span>
+                <span class="logo-jp">オタク</span>
+            </a>
+            <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="Search Topics..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="nav-auth-btn"></li>
+                <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">🌙 NIGHT MODE</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-kanji">入</div>
+
+            <div class="auth-header">
+                <p>VOLUME 00 • ACCESS CONTROL</p>
+                <h1>JOIN THE<br>REALM.</h1>
+            </div>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">⚡ LOGIN</button>
+                <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">✦ SIGN UP</button>
+            </div>
+
+            <div class="auth-form-wrap">
+
+                <!-- ── LOGIN PANEL ── -->
+                <div class="auth-panel active" id="panel-login">
+                    <div class="auth-error" id="login-error"></div>
+                    <div class="auth-success" id="login-success">
+                        <h3>WELCOME BACK! ⚡</h3>
+                        <p>Redirecting to your watchlist...</p>
+                        <a href="watchlist.html" class="btn btn-manga" style="text-decoration:none;">GO TO WATCHLIST</a>
+                    </div>
+                    <form id="login-form" autocomplete="on">
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" name="email" placeholder="you@example.com" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="••••••••" required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="btn btn-manga auth-submit">ENTER THE REALM →</button>
+                    </form>
+                    <p class="form-hint">No account yet? <button onclick="switchTab('signup')">CREATE ONE FREE</button></p>
+                </div>
+
+                <!-- ── SIGNUP PANEL ── -->
+                <div class="auth-panel" id="panel-signup">
+                    <div class="auth-error" id="signup-error"></div>
+                    <div class="auth-success" id="signup-success">
+                        <h3>ACCOUNT CREATED! ✦</h3>
+                        <p>Your watchlist is ready. Time to fill it up!</p>
+                        <a href="watchlist.html" class="btn btn-manga" style="text-decoration:none;">GO TO WATCHLIST</a>
+                    </div>
+                    <form id="signup-form" autocomplete="on">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="signup-name">Your Name</label>
+                                <input type="text" id="signup-name" name="name" placeholder="Naruto" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-age">Your Age</label>
+                                <input type="number" id="signup-age" name="age" placeholder="17" min="5" max="120" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" name="email" placeholder="you@example.com" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Create Password <span style="font-weight:600;opacity:0.6;">(min 6 chars)</span></label>
+                            <input type="password" id="signup-password" name="password" placeholder="••••••••" required autocomplete="new-password">
+                            <div class="pw-strength">
+                                <div class="pw-strength-fill" id="pw-strength-fill"></div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-manga auth-submit">CREATE ACCOUNT ✦</button>
+                    </form>
+                    <p class="form-hint">Already have an account? <button onclick="switchTab('login')">LOG IN HERE</button></p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
+    <script src="../firebase-init.js"></script>
+
+    <script src="../script.js"></script>
+    <script src="../search.js?v=5.0"></script>
+    <script src="../auth.js"></script>
+    <script>
+        // Redirect if already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = Auth.getCurrentUser();
+            if (user) {
+                window.location.href = 'watchlist.html';
+            }
+        });
+
+        function switchTab(tab) {
+            document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+            document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+            document.getElementById('panel-login').classList.toggle('active', tab === 'login');
+            document.getElementById('panel-signup').classList.toggle('active', tab === 'signup');
+            // Clear errors on tab switch
+            document.getElementById('login-error').style.display = 'none';
+            document.getElementById('signup-error').style.display = 'none';
+        }
+
+        // Show URL hash tab
+        if (window.location.hash === '#signup') switchTab('signup');
+
+        // ── Password strength ──
+        document.getElementById('signup-password').addEventListener('input', function () {
+            const val = this.value;
+            let score = 0;
+            if (val.length >= 6) score++;
+            if (val.length >= 10) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+            const fill = document.getElementById('pw-strength-fill');
+            fill.style.width = (score / 5 * 100) + '%';
+            fill.style.background = score <= 1 ? '#ff0055' : score <= 3 ? '#ff9900' : '#00aa55';
+        });
+
+        // ── LOGIN ──
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const errEl = document.getElementById('login-error');
+            errEl.style.display = 'none';
+
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const password = document.getElementById('login-password').value;
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'CONNECTING...';
+            btn.disabled = true;
+
+            const result = await Auth.login({ email, password });
+            
+            btn.textContent = originalText;
+            btn.disabled = false;
+
+            if (!result.success) {
+                errEl.textContent = '⚠️ ' + result.error;
+                errEl.style.display = 'block';
+                return;
+            }
+            // Success
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('login-success').style.display = 'block';
+            document.querySelector('.form-hint').style.display = 'none';
+            const returnTo = new URLSearchParams(window.location.search).get('return') || 'watchlist.html';
+            setTimeout(() => { window.location.href = returnTo; }, 1800);
+        });
+
+        // ── SIGN UP ──
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const errEl = document.getElementById('signup-error');
+            errEl.style.display = 'none';
+
+            const name     = document.getElementById('signup-name').value;
+            const age      = document.getElementById('signup-age').value;
+            const email    = document.getElementById('signup-email').value.trim().toLowerCase();
+            const password = document.getElementById('signup-password').value;
+
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'CREATING...';
+            btn.disabled = true;
+
+            const result = await Auth.signup({ name, age, email, password });
+            
+            btn.textContent = originalText;
+            btn.disabled = false;
+
+            if (!result.success) {
+                errEl.textContent = '⚠️ ' + result.error;
+                errEl.style.display = 'block';
+                return;
+            }
+            // Success
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('signup-success').style.display = 'block';
+            document.querySelectorAll('#panel-signup .form-hint').forEach(el => el.style.display = 'none');
+            setTimeout(() => { window.location.href = 'watchlist.html'; }, 1800);
+        });
+    </script>
+</body>
+</html>
