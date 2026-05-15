@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Top Lists — Manga Edition — Otaku Realm</title>
+    <meta name="description" content="The definitive rankings of the strongest characters, best openings, and underrated gems.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://otakurealm09.netlify.app/pages/top-lists.html">
+    <meta property="og:title" content="Anime Top Lists — Otaku Realm">
+    <meta property="og:description" content="Definitive rankings of characters, openings, and underrated gems.">
+    <meta property="og:image" content="https://otakurealm09.netlify.app/hero.png">
+
+    <!-- Google Analytics 4 -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); // PASTE YOUR MEASUREMENT ID HERE
+    </script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=4.1">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script>
+        if (localStorage.getItem('manga-theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="manga-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="logo">
+                <span class="logo-text">OTAKU</span>
+                <span class="logo-accent">REALM</span>
+                <span class="logo-jp">オタク</span>
+            </a>
+            <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="Search Topics..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">🌙 NIGHT MODE</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- AdSense Below Navbar -->
+    <div class="container center" style="margin: 1rem auto;">
+        <div style="padding: 10px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BELOW NAVBAR</div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="hero manga-panel" style="min-height: 40vh;">
+        <div class="hero-content" style="grid-template-columns: 1fr;">
+            <div class="hero-text-wrap" style="text-align: center;">
+                <p class="hero-tag">CH. 4 • TOP LISTS</p>
+                <h1 class="hero-title" style="font-size: 4rem;">
+                    THE BIGGEST<br>
+                    <span class="text-outline">DEBATES</span>
+                </h1>
+                <p class="hero-sub" style="margin-bottom: 0;">
+                    Villains, plot twists, openings, and hidden gems — all ranked.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="section bg-dots">
+        <div class="container">
+            <div class="power-rankings-list">
+
+                <!-- Plot Twists -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#01</div>
+                    <div class="rank-content">
+                        <span class="series-tag">PLOT TWISTS</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 10 ANIME PLOT TWISTS</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Attack on Titan</strong> — The Basement Reveal. It recontextualized everything.</li>
+                                <li><strong>Death Note</strong> — L Dies. The hero lost. Unprecedented.</li>
+                                <li><strong>Code Geass</strong> — Zero Requiem. The ultimate sacrifice play.</li>
+                                <li><strong>Naruto</strong> — Itachi's Truth. The massacre explained.</li>
+                                <li><strong>Madoka Magica</strong> — Episode 3. Created the dark magical girl subgenre.</li>
+                                <li><strong>Steins;Gate</strong> — Mayuri's Death Loop. Hits like a freight train.</li>
+                                <li><strong>One Piece</strong> — Ace's Death. Oda broke his own rules.</li>
+                                <li><strong>Fullmetal Alchemist</strong> — Nina Tucker. "Ed...ward."</li>
+                                <li><strong>Evangelion</strong> — The Instrumentality. The show deconstructs itself.</li>
+                                <li><strong>The Promised Neverland</strong> — The Farm Reveal. From warm to horrific in 30 seconds.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Villains -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#02</div>
+                    <div class="rank-content">
+                        <span class="series-tag">VILLAINS</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 10 ANIME VILLAINS</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Johan Liebert (Monster)</strong> — The most terrifyingly human villain.</li>
+                                <li><strong>Griffith (Berserk)</strong> — Griffith did EVERYTHING wrong.</li>
+                                <li><strong>Light Yagami (Death Note)</strong> — The protagonist IS the villain.</li>
+                                <li><strong>Meruem (Hunter x Hunter)</strong> — Began as a monster, ended as the most empathetic.</li>
+                                <li><strong>Aizen Sosuke (Bleach)</strong> — Planned everything for centuries.</li>
+                                <li><strong>Pain/Nagato (Naruto)</strong> — Made Naruto question his entire philosophy.</li>
+                                <li><strong>DIO (JoJo's Bizarre Adventure)</strong> — The most iconic. "It was me, DIO!"</li>
+                                <li><strong>Frieza (Dragon Ball Z)</strong> — Set the template for every shonen villain.</li>
+                                <li><strong>Yoshikage Kira (JoJo Part 4)</strong> — A serial killer who wants a quiet life.</li>
+                                <li><strong>Sukuna (Jujutsu Kaisen)</strong> — The King of Curses treats everyone as insects.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Openings -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#03</div>
+                    <div class="rank-content">
+                        <span class="series-tag">MUSIC</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 10 ANIME OPENING THEMES (OP)</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>"Cruel Angel's Thesis"</strong> (Evangelion) — The undisputed king of anime OPs.</li>
+                                <li><strong>"Unravel"</strong> (Tokyo Ghoul) — Iconic angst.</li>
+                                <li><strong>"Tank!"</strong> (Cowboy Bebop) — Flawless jazz masterpiece.</li>
+                                <li><strong>"Again"</strong> (Fullmetal Alchemist: Brotherhood) — YUI delivered perfection.</li>
+                                <li><strong>"Gurenge"</strong> (Demon Slayer) — Lisa's breakout global hit.</li>
+                                <li><strong>"The Rumbling"</strong> (Attack on Titan) — SiM brought the heavy metal hype.</li>
+                                <li><strong>"Kaikai Kitan"</strong> (Jujutsu Kaisen) — Eve defined the modern shonen sound.</li>
+                                <li><strong>"Idol"</strong> (Oshi no Ko) — YOASOBI broke global streaming records.</li>
+                                <li><strong>"Colors"</strong> (Code Geass) — JIBUN WO!</li>
+                                <li><strong>"Bloody Stream"</strong> (JoJo Part 2) — The most stylish OP ever made.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Fight Scenes -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#04</div>
+                    <div class="rank-content">
+                        <span class="series-tag">ACTION</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 10 FIGHT SCENES</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Kakashi vs. Obito</strong> (Naruto Shippuden) — Flawless hand-to-hand choreography.</li>
+                                <li><strong>Netero vs. Meruem</strong> (Hunter x Hunter) — A philosophical battle of ideals.</li>
+                                <li><strong>Saitama vs. Boros</strong> (One Punch Man) — Pure, unadulterated animation hype.</li>
+                                <li><strong>Gojo vs. Sukuna</strong> (Jujutsu Kaisen) — The absolute peak of modern shonen battles.</li>
+                                <li><strong>Levi vs. Beast Titan</strong> (Attack on Titan) — The most satisfying beatdown in history.</li>
+                                <li><strong>Tengen vs. Gyutaro</strong> (Demon Slayer) — Ufotable broke the internet.</li>
+                                <li><strong>Goku vs. Jiren</strong> (Dragon Ball Super) — Broke streaming services globally.</li>
+                                <li><strong>Gintoki vs. Takasugi</strong> (Gintama) — Pure emotion and brutal realism.</li>
+                                <li><strong>Kiritsugu vs. Kirei</strong> (Fate/Zero) — A masterclass in tactical combat.</li>
+                                <li><strong>Mob vs. Koyama</strong> (Mob Psycho 100) — Yutaka Nakamura's finest animation work.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Power Systems -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#05</div>
+                    <div class="rank-content">
+                        <span class="series-tag">WORLD BUILDING</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 10 POWER SYSTEMS</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Nen</strong> (Hunter x Hunter) — The most balanced, deep, and logical system ever created.</li>
+                                <li><strong>Alchemy</strong> (Fullmetal Alchemist) — Equivalent exchange makes it grounded and fair.</li>
+                                <li><strong>Stands</strong> (JoJo's Bizarre Adventure) — Invented the "unique ghost power" trope.</li>
+                                <li><strong>Cursed Energy / Domain Expansions</strong> (Jujutsu Kaisen) — Complex, lethal, and visually stunning.</li>
+                                <li><strong>Chakra</strong> (Naruto) — The perfect blend of martial arts and elemental magic (before the alien stuff).</li>
+                                <li><strong>Devil Fruits & Haki</strong> (One Piece) — Creative, bizarre, and balances perfectly with Haki later on.</li>
+                                <li><strong>Triggers</strong> (World Trigger) — Highly tactical, team-based weapon system.</li>
+                                <li><strong>Bending</strong> (Avatar) — Culturally tied to martial arts forms (yes, it counts).</li>
+                                <li><strong>Zanpakuto</strong> (Bleach) — Shikai and Bankai reveals are pure hype.</li>
+                                <li><strong>Quirks</strong> (My Hero Academia) — A fun, genetic take on western superhero powers.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sad Anime -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#06</div>
+                    <div class="rank-content">
+                        <span class="series-tag">TRAGEDY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 10 SADDEST ANIME</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Grave of the Fireflies</strong> — You will only watch this once. It is too painful.</li>
+                                <li><strong>Clannad: After Story</strong> — The gold standard for tearing out your heart.</li>
+                                <li><strong>Your Lie in April</strong> — A beautiful, inevitable tragedy.</li>
+                                <li><strong>Anohana: The Flower We Saw That Day</strong> — "You found me."</li>
+                                <li><strong>Violet Evergarden</strong> — Specifically Episode 10. Bring tissues.</li>
+                                <li><strong>A Silent Voice</strong> — A brutal look at bullying and self-hatred.</li>
+                                <li><strong>Cyberpunk: Edgerunners</strong> — High-octane action ending in hollow devastation.</li>
+                                <li><strong>Plastic Memories</strong> — You know the ending from episode 1, but it still hurts.</li>
+                                <li><strong>I Want to Eat Your Pancreas</strong> — Don't let the title fool you.</li>
+                                <li><strong>To Your Eternity</strong> — The pain of outliving everyone you love.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Isekai -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#07</div>
+                    <div class="rank-content">
+                        <span class="series-tag">GENRE</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 10 ISEKAI ANIME</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Re:Zero</strong> — A psychological breakdown of the isekai power fantasy.</li>
+                                <li><strong>Mushoku Tensei</strong> — The godfather of the modern isekai web novel.</li>
+                                <li><strong>KonoSuba</strong> — The funniest parody of the genre.</li>
+                                <li><strong>No Game No Life</strong> — Visually stunning mind games.</li>
+                                <li><strong>That Time I Got Reincarnated as a Slime</strong> — The best world/nation building.</li>
+                                <li><strong>Overlord</strong> — What if the main character was the final boss?</li>
+                                <li><strong>Sword Art Online</strong> — The show that started the modern boom.</li>
+                                <li><strong>Log Horizon</strong> — For players who actually care about MMO politics and economics.</li>
+                                <li><strong>Spirited Away</strong> — The Academy Award-winning classic isekai.</li>
+                                <li><strong>The Rising of the Shield Hero</strong> (Season 1) — An excellent underdog revenge story.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Characters -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#08</div>
+                    <div class="rank-content">
+                        <span class="series-tag">CHARACTERS</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">TOP 50 MOST ICONIC ANIME CHARACTERS</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 1.8;">
+                                    <li><strong>Lelouch Lamperouge</strong> (Code Geass)</li>
+                                    <li><strong>Light Yagami</strong> (Death Note)</li>
+                                    <li><strong>Guts</strong> (Berserk)</li>
+                                    <li><strong>Monkey D. Luffy</strong> (One Piece)</li>
+                                    <li><strong>Naruto Uzumaki</strong> (Naruto)</li>
+                                    <li><strong>Goku</strong> (Dragon Ball)</li>
+                                    <li><strong>Edward Elric</strong> (FMA)</li>
+                                    <li><strong>Levi Ackerman</strong> (AoT)</li>
+                                    <li><strong>Roronoa Zoro</strong> (One Piece)</li>
+                                    <li><strong>Killua Zoldyck</strong> (Hunter x Hunter)</li>
+                                    <li><strong>Eren Yeager</strong> (AoT)</li>
+                                    <li><strong>Satoru Gojo</strong> (Jujutsu Kaisen)</li>
+                                    <li><strong>Ken Kaneki</strong> (Tokyo Ghoul)</li>
+                                    <li><strong>Spike Spiegel</strong> (Cowboy Bebop)</li>
+                                    <li><strong>Itachi Uchiha</strong> (Naruto)</li>
+                                    <li><strong>Saber</strong> (Fate/stay night)</li>
+                                    <li><strong>Mikasa Ackerman</strong> (AoT)</li>
+                                    <li><strong>Vegeta</strong> (Dragon Ball)</li>
+                                    <li><strong>Kakashi Hatake</strong> (Naruto)</li>
+                                    <li><strong>Roy Mustang</strong> (FMA)</li>
+                                    <li><strong>Yusuke Urameshi</strong> (Yu Yu Hakusho)</li>
+                                    <li><strong>Saitama</strong> (One Punch Man)</li>
+                                    <li><strong>Shinji Ikari</strong> (Evangelion)</li>
+                                    <li><strong>Jotaro Kujo</strong> (JoJo)</li>
+                                    <li><strong>Makise Kurisu</strong> (Steins;Gate)</li>
+                                </ol>
+                                <ol start="26" style="margin-left: 1.5rem; font-weight: 600; line-height: 1.8;">
+                                    <li><strong>Shigeo 'Mob' Kageyama</strong> (Mob Psycho)</li>
+                                    <li><strong>Thorfinn Karlsefni</strong> (Vinland Saga)</li>
+                                    <li><strong>Tanjirou Kamado</strong> (Demon Slayer)</li>
+                                    <li><strong>Gon Freecss</strong> (Hunter x Hunter)</li>
+                                    <li><strong>Ichigo Kurosaki</strong> (Bleach)</li>
+                                    <li><strong>Alucard</strong> (Hellsing)</li>
+                                    <li><strong>Revy</strong> (Black Lagoon)</li>
+                                    <li><strong>Motoko Kusanagi</strong> (GitS)</li>
+                                    <li><strong>Eikichi Onizuka</strong> (GTO)</li>
+                                    <li><strong>Vash the Stampede</strong> (Trigun)</li>
+                                    <li><strong>Mugen</strong> (Samurai Champloo)</li>
+                                    <li><strong>Johan Liebert</strong> (Monster)</li>
+                                    <li><strong>Griffith</strong> (Berserk)</li>
+                                    <li><strong>Hisoka Morow</strong> (Hunter x Hunter)</li>
+                                    <li><strong>Madara Uchiha</strong> (Naruto)</li>
+                                    <li><strong>Dio Brando</strong> (JoJo)</li>
+                                    <li><strong>Esdeath</strong> (Akame ga Kill)</li>
+                                    <li><strong>Power</strong> (Chainsaw Man)</li>
+                                    <li><strong>Denji</strong> (Chainsaw Man)</li>
+                                    <li><strong>Violet Evergarden</strong> (Violet Evergarden)</li>
+                                    <li><strong>Frieren</strong> (Frieren)</li>
+                                    <li><strong>Rimuru Tempest</strong> (Slime)</li>
+                                    <li><strong>Megumin</strong> (KonoSuba)</li>
+                                    <li><strong>Zero Two</strong> (Darling in the Franxx)</li>
+                                    <li><strong>Asuka Langley Soryu</strong> (Evangelion)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            
+            <!-- AdSense Bottom of Page -->
+            <div class="container center" style="margin: 4rem auto 2rem auto;">
+                <div style="padding: 20px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BOTTOM OF PAGE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="manga-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="brand">
+                    <h2>OTAKU REALM</h2>
+                    <p>The ultimate manga-style anime blog. No fluff. Just raw data.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html">← BACK TO HOME</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 OTAKU REALM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../search.js?v=5.0"></script>
+</body>
+</html>

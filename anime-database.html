@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Anime Database — Otaku Realm</title>
+    <meta name="description" content="Browse and search 50+ popular anime with ratings, synopses, and details.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=2.1">
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <nav id="navbar" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="logo"><span class="logo-icon">鬼</span><span class="logo-text">Otaku<span class="accent">Realm</span></span></a>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="Search anime..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="anime-database.html" class="active">Database</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="top-lists.html">Top Lists</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="page-hero page-hero-sm">
+        <div class="page-hero-overlay" style="background:linear-gradient(135deg,rgba(224,64,251,0.15),rgba(124,77,255,0.15),rgba(0,229,255,0.1)),var(--bg-primary)"></div>
+        <div class="page-hero-content">
+            <span class="section-tag">📚 Encyclopedia</span>
+            <h1 class="section-title">Anime <span class="gradient-text">Database</span></h1>
+            <p class="section-desc">Browse 50+ popular anime. Search by title, genre, studio, or tags.</p>
+            <div class="db-search-hero">
+                <input type="text" id="db-search" placeholder="🔍 Search by title, genre, studio..." autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="db-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="Action">Action</button>
+                <button class="filter-btn" data-filter="Romance">Romance</button>
+                <button class="filter-btn" data-filter="Comedy">Comedy</button>
+                <button class="filter-btn" data-filter="Thriller">Thriller</button>
+                <button class="filter-btn" data-filter="Fantasy">Fantasy</button>
+                <button class="filter-btn" data-filter="Sci-Fi">Sci-Fi</button>
+                <button class="filter-btn" data-filter="Horror">Horror</button>
+                <button class="filter-btn" data-filter="Drama">Drama</button>
+                <button class="filter-btn" data-filter="Sports">Sports</button>
+                <button class="filter-btn" data-filter="Isekai">Isekai</button>
+                <button class="filter-btn" data-filter="Shonen">Shonen</button>
+            </div>
+            <div class="db-stats">
+                <span id="results-count">50</span> anime found
+                <button class="sort-btn" id="sort-btn">Sort: ⭐ Rating</button>
+            </div>
+            <div class="anime-grid" id="anime-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Anime Detail Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="anime-modal">
+            <button class="modal-close" id="modal-close">✕</button>
+            <div class="modal-content" id="modal-content"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Otaku Realm. Made with 💜 for anime fans everywhere. <a href="../index.html" style="color:var(--accent-1)">← Back to Home</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="../script.js"></script>
+    <script src="../search.js?v=5.0"></script>
+</body>
+</html>

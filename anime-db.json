@@ -1,0 +1,48 @@
+[
+  {
+    "id": "naruto",
+    "title": "Naruto",
+    "tags": "SHONEN • ACTION • ADVENTURE",
+    "image": "https://cdn.myanimelist.net/images/anime/13/17405.jpg",
+    "rating": "8.3/10",
+    "year": "2002",
+    "studio": "Studio Pierrot",
+    "episodes": "220",
+    "desc": "Moments before Naruto Uzumaki's birth, a huge demon known as the Kyuubi, the Nine-Tailed Fox, attacked Konohagakure, the Hidden Leaf Village, and wreaked havoc. In order to put a stop to the Kyuubi's rampage, the leader of the village, the Fourth Hokage, sacrificed his life and sealed the monstrous beast inside the newborn Naruto.",
+    "pros": [
+      "Iconic world-building and lore",
+      "Incredible fight choreography",
+      "Deeply emotional character backstories",
+      "Legendary soundtrack"
+    ],
+    "cons": [
+      "Heavy reliance on flashbacks",
+      "Significant amount of filler episodes",
+      "Pacing issues in later arcs"
+    ],
+    "verdict": "Naruto is a foundational pillar of the shonen genre. Despite its pacing issues, it remains a masterpiece of storytelling and character development that defined a generation."
+  },
+  {
+    "id": "one-piece",
+    "title": "One Piece",
+    "tags": "SHONEN • ADVENTURE • FANTASY",
+    "image": "https://cdn.myanimelist.net/images/anime/1244/138851.jpg",
+    "rating": "8.7/10",
+    "year": "1999",
+    "studio": "Toei Animation",
+    "episodes": "1000+",
+    "desc": "Gol D. Roger was known as the 'Pirate King,' the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world. His last words before his death revealed the existence of the greatest treasure in the world, One Piece.",
+    "pros": [
+      "Peerless world-building",
+      "Consistent quality over decades",
+      "Complex overarching mystery",
+      "Strong emotional stakes"
+    ],
+    "cons": [
+      "Extremely long commitment",
+      "Early animation is dated",
+      "Slow pacing in some arcs"
+    ],
+    "verdict": "The ultimate adventure. One Piece is a masterclass in long-form storytelling that rewards patient viewers with one of the most cohesive worlds in fiction."
+  }
+]

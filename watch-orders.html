@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Orders — Manga Edition — Otaku Realm</title>
+    <meta name="description" content="Never watch anime out of order again. Definitive guides for Naruto, Fate, Monogatari, and more.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://otakurealm09.netlify.app/pages/watch-orders.html">
+    <meta property="og:title" content="Watch Orders — Otaku Realm">
+    <meta property="og:description" content="Definitive guides to the most confusing anime franchises.">
+    <meta property="og:image" content="https://otakurealm09.netlify.app/hero.png">
+
+    <!-- Google Analytics 4 -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); // PASTE YOUR MEASUREMENT ID HERE
+    </script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=4.1">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script>
+        if (localStorage.getItem('manga-theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="manga-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="logo">
+                <span class="logo-text">OTAKU</span>
+                <span class="logo-accent">REALM</span>
+                <span class="logo-jp">オタク</span>
+            </a>
+            <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="Search Topics..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">🌙 NIGHT MODE</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- AdSense Below Navbar -->
+    <div class="container center" style="margin: 1rem auto;">
+        <div style="padding: 10px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BELOW NAVBAR</div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="hero manga-panel" style="min-height: 40vh;">
+        <div class="hero-content" style="grid-template-columns: 1fr;">
+            <div class="hero-text-wrap" style="text-align: center;">
+                <p class="hero-tag">CH. 1 • WATCH ORDERS</p>
+                <h1 class="hero-title" style="font-size: 4rem;">
+                    NEVER WATCH<br>
+                    <span class="text-outline">OUT OF ORDER</span>
+                </h1>
+                <p class="hero-sub" style="margin-bottom: 0;">
+                    Definitive guides to the most confusing anime franchises.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="section bg-dots">
+        <div class="container">
+            <div class="power-rankings-list">
+
+                <!-- Naruto -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#01</div>
+                    <div class="rank-content">
+                        <span class="series-tag">SHONEN</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">NARUTO (SKIP THE FILLER)</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Naruto's 720 episodes contain roughly 40% filler. Here's exactly how to watch it without wasting time.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">📋 RECOMMENDED ORDER:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Naruto</strong> — Eps 1-135 (Land of Waves -> Sasuke Recovery)</li>
+                                <li><strong>Skip to Shippuden</strong> — Eps 136-220 are ALL filler</li>
+                                <li><strong>Shippuden</strong> — Eps 1-56 (Kazekage Rescue + Tenchi Bridge)</li>
+                                <li><strong>Shippuden</strong> — Eps 72-126 (Akatsuki Suppression + Itachi)</li>
+                                <li><strong>Shippuden</strong> — Eps 152-175 (Pain's Assault — Peak Fiction)</li>
+                                <li><strong>Shippuden</strong> — Eps 197-222 (Five Kage Summit)</li>
+                                <li><strong>Shippuden</strong> — Eps 261-321, 339-366, 372-393, 414-426, 459-479, 484-500 (War Arc -> Finale)</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Fate -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#02</div>
+                    <div class="rank-content">
+                        <span class="series-tag">FANTASY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">FATE SERIES</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Notoriously confusing. Multiple timelines, studios, and storylines. Here is the Ufotable Route.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🅰️ THE CORE STORY (UFOTABLE ROUTE):</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2; margin-bottom: 1.5rem;">
+                                <li><strong>Fate/Zero</strong> (2011) — The prequel. Dark, mature, and the best starting point.</li>
+                                <li><strong>Fate/Stay Night: Unlimited Blade Works</strong> (2014) — The main story (Rin's route).</li>
+                                <li><strong>Fate/Stay Night: Heaven's Feel</strong> (2017-2020) — 3 film trilogy. The darkest and final core route.</li>
+                            </ol>
+
+                            <h4 style="margin-bottom: 1rem;">🅱️ FATE/GRAND ORDER (MOBILE GAME TIMELINE):</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2; margin-bottom: 1.5rem;">
+                                <li><strong>First Order</strong> (2016) — Prologue movie.</li>
+                                <li><strong>Camelot</strong> (2020-2021) — 2 film series (Singularity 6).</li>
+                                <li><strong>Absolute Demonic Front: Babylonia</strong> (2019) — TV Series (Singularity 7).</li>
+                                <li><strong>Solomon</strong> (2021) — The Grand Temple of Time movie.</li>
+                            </ol>
+
+                            <h4 style="margin-bottom: 1rem;">🔀 ALTERNATE UNIVERSES & SPIN-OFFS (WATCH IN ANY ORDER):</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Fate/Apocrypha</strong> — A massive 14 vs 14 servant holy grail war in a parallel universe.</li>
+                                <li><strong>Fate/Extra Last Encore</strong> — Cyberpunk Fate set on the moon. Very confusing.</li>
+                                <li><strong>Fate/kaleid liner Prisma Illya</strong> — Magical girl spin-off starring Illya.</li>
+                                <li><strong>Lord El-Melloi II's Case Files</strong> — A mystery series following Waver Velvet after Fate/Zero.</li>
+                                <li><strong>Today's Menu for the Emiya Family</strong> — Pure wholesome cooking slice-of-life.</li>
+                                <li><strong>Fate/strange Fake</strong> — A chaotic, rule-breaking Grail War in America.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Monogatari -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#03</div>
+                    <div class="rank-content">
+                        <span class="series-tag">SUPERNATURAL</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">MONOGATARI SERIES</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">📋 RELEASE ORDER (RECOMMENDED):</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Bakemonogatari</strong> (2009)</li>
+                                <li><strong>Kizumonogatari</strong> (Films I, II, III)</li>
+                                <li><strong>Nisemonogatari</strong> (2012)</li>
+                                <li><strong>Nekomonogatari: Black</strong> (2012)</li>
+                                <li><strong>Monogatari Series: Second Season</strong> (2013)</li>
+                                <li><strong>Hanamonogatari</strong> (2014)</li>
+                                <li><strong>Tsukimonogatari</strong> (2014)</li>
+                                <li><strong>Owarimonogatari</strong> S1 + S2</li>
+                                <li><strong>Zoku Owarimonogatari</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+                <!-- Evangelion -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#04</div>
+                    <div class="rank-content">
+                        <span class="series-tag">MECHA / PSYCHOLOGICAL</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">NEON GENESIS EVANGELION</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The original 90s masterpiece vs the modern Rebuild films. You must watch both.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">📺 PHASE 1: THE ORIGINAL SERIES:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2; margin-bottom: 1.5rem;">
+                                <li><strong>Neon Genesis Evangelion (1995)</strong> — Episodes 1 to 24.</li>
+                                <li><strong>Neon Genesis Evangelion (1995)</strong> — Episodes 25 & 26 (The psychological TV ending).</li>
+                                <li><strong>The End of Evangelion (1997)</strong> — The feature film that replaces/runs parallel to episodes 25 & 26. This is the "true" cinematic ending.</li>
+                            </ol>
+
+                            <h4 style="margin-bottom: 1rem;">🎥 PHASE 2: THE REBUILD FILMS (Alternate Retelling/Sequel):</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Evangelion: 1.0 You Are (Not) Alone</strong> — A modern remake of eps 1-6.</li>
+                                <li><strong>Evangelion: 2.0 You Can (Not) Advance</strong> — The story completely diverges here.</li>
+                                <li><strong>Evangelion: 3.0 You Can (Not) Redo</strong> — A completely new, wild direction.</li>
+                                <li><strong>Evangelion: 3.0+1.0 Thrice Upon a Time</strong> — The final, definitive conclusion to the entire franchise.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- JoJo's Bizarre Adventure -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#05</div>
+                    <div class="rank-content">
+                        <span class="series-tag">ACTION / BIZARRE</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">JOJO'S BIZARRE ADVENTURE</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Each 'Part' focuses on a different generation of the Joestar bloodline. DO NOT SKIP PARTS.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">📺 THE ANIME TIMELINE (PARTS 1-6):</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2; margin-bottom: 1.5rem;">
+                                <li><strong>JoJo's Bizarre Adventure (2012)</strong> — Contains Part 1 (Phantom Blood) and Part 2 (Battle Tendency).</li>
+                                <li><strong>Stardust Crusaders (2014) & Battle in Egypt (2015)</strong> — Part 3. The introduction of Stands.</li>
+                                <li><strong>Diamond is Unbreakable (2016)</strong> — Part 4. A small-town murder mystery.</li>
+                                <li><strong>Thus Spoke Kishibe Rohan (OVA)</strong> — Spin-off featuring Rohan. Watch after Part 4.</li>
+                                <li><strong>Golden Wind (2018)</strong> — Part 5. Mafia action in Italy.</li>
+                                <li><strong>Stone Ocean (2021)</strong> — Part 6. The grand finale of the original timeline.</li>
+                            </ol>
+
+                            <h4 style="margin-bottom: 1rem;">📖 THE MANGA TIMELINE (THE SBR UNIVERSE):</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Part 7: Steel Ball Run</strong> — A completely new universe. A cross-country horse race in 1890 America.</li>
+                                <li><strong>Part 8: JoJolion</strong> — A mystery set in an alternate Morioh town.</li>
+                                <li><strong>Part 9: The JOJOLands</strong> — The current ongoing manga series.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Toaru Series -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#06</div>
+                    <div class="rank-content">
+                        <span class="series-tag">SCI-FI / MAGIC</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">A CERTAIN SCIENTIFIC / MAGICAL SERIES (TOARU)</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">A massive shared universe between magic users and scientific espers. The spin-off (Railgun) is often considered better than the main series (Index).</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">📋 SIMPLIFIED / RECOMMENDED WATCH ORDER:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>A Certain Scientific Railgun</strong> (Season 1) — The best introduction to Academy City.</li>
+                                <li><strong>A Certain Scientific Railgun S</strong> (Season 2) — Covers the peak arc of the franchise.</li>
+                                <li><strong>A Certain Magical Index</strong> (Season 1) — The main storyline begins.</li>
+                                <li><strong>A Certain Scientific Accelerator</strong> (Spin-off) — Best watched after Index 1.</li>
+                                <li><strong>A Certain Magical Index II</strong> (Season 2)</li>
+                                <li><strong>A Certain Scientific Railgun T</strong> (Season 3)</li>
+                                <li><strong>A Certain Magical Index: The Miracle of Endymion</strong> (Movie)</li>
+                                <li><strong>A Certain Magical Index III</strong> (Season 3)</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Mobile Suit Gundam -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#07</div>
+                    <div class="rank-content">
+                        <span class="series-tag">MECHA / MILITARY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">MOBILE SUIT GUNDAM (UNIVERSAL CENTURY)</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Gundam has many stand-alone universes (like Iron-Blooded Orphans or 00). But the main, original timeline is the 'Universal Century' (UC). Here is the core UC path.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">📋 THE CORE UC TIMELINE:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2; margin-bottom: 1.5rem;">
+                                <li><strong>Mobile Suit Gundam (0079)</strong> — The original 1979 series (or the 3 compilation movies).</li>
+                                <li><strong>Mobile Suit Zeta Gundam</strong> — The legendary sequel. (Do NOT watch the compilation movies for this, watch the TV series).</li>
+                                <li><strong>Mobile Suit Gundam ZZ</strong> — The direct follow-up to Zeta.</li>
+                                <li><strong>Mobile Suit Gundam: Char's Counterattack</strong> — The 1988 film. The epic conclusion to the Amuro vs Char rivalry.</li>
+                            </ol>
+
+                            <h4 style="margin-bottom: 1rem;">⭐ ESSENTIAL SIDE STORIES (Watch after the core):</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Gundam 0080: War in the Pocket</strong> — A tragic, intimate look at the One Year War.</li>
+                                <li><strong>The 08th MS Team</strong> — Gritty, ground-level jungle warfare.</li>
+                                <li><strong>Gundam Thunderbolt</strong> — High-intensity jazz and brutal space combat.</li>
+                                <li><strong>Mobile Suit Gundam Unicorn</strong> — The lavishly produced epilogue to the early UC era.</li>
+                                <li><strong>Mobile Suit Gundam: Hathaway</strong> — The next era of the UC timeline.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- AdSense Between Content -->
+                <div class="container center" style="margin: 2rem auto;">
+                    <div style="padding: 20px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BETWEEN CONTENT</div>
+                </div>
+
+                <!-- Science Adventure Series -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#08</div>
+                    <div class="rank-content">
+                        <span class="series-tag">SCI-FI / THRILLER</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">SCIENCE ADVENTURE (STEINS;GATE)</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The Steins;Gate watch order is heavily debated due to time travel mechanics. This is the definitive chronological/emotional order.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">⏳ THE TRUE ENDING ORDER:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2; margin-bottom: 1.5rem;">
+                                <li><strong>Steins;Gate</strong> (Episodes 1 to 22).</li>
+                                <li><strong>Steins;Gate Episode 23 (Beta) / Open the Missing Link</strong> — The alternate version of episode 23 where Okabe gives up.</li>
+                                <li><strong>Steins;Gate 0</strong> — The entire sequel series exploring the timeline where Okabe gave up.</li>
+                                <li><strong>Steins;Gate</strong> (Episodes 23 & 24) — Return to the original series for the true, triumphant ending.</li>
+                            </ol>
+
+                            <h4 style="margin-bottom: 1rem;">🔬 THE WIDER UNIVERSE:</h4>
+                            <p style="margin-bottom: 1rem; font-weight: 500;">Steins;Gate is part of the 'Science Adventure' visual novel universe. If you are interested in the others, watch them in this order, but note their anime adaptations are considered inferior to Steins;Gate.</p>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Chaos;Head</strong> — Watch first.</li>
+                                <li><strong>Robotics;Notes</strong> — Watch after Steins;Gate.</li>
+                                <li><strong>Chaos;Child</strong> — Watch after Chaos;Head.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Berserk -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#09</div>
+                    <div class="rank-content">
+                        <span class="series-tag">DARK FANTASY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">BERSERK</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The anime adaptations of Berserk are notoriously fragmented. Here is the best way to experience Guts' journey.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">⚔️ THE RECOMMENDED PATH:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Berserk (1997)</strong> — The classic 25-episode anime. Covers the Golden Age arc beautifully.</li>
+                                <li><strong>Berserk: The Golden Age Arc (Memorial Edition)</strong> — A remastered movie trilogy. You can watch this instead of the 1997 anime if you prefer modern animation, though it cuts some character development.</li>
+                                <li><strong>Read the Manga</strong> — From chapter 1. The 2016/2017 CGI anime adaptations are universally considered terrible and skip major arcs. The only true way to experience the rest of Berserk is the manga.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sword Art Online -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#10</div>
+                    <div class="rank-content">
+                        <span class="series-tag">ISEKAI / SCI-FI</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">SWORD ART ONLINE</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">With spin-offs, movies, and the massive Alicization arc, SAO has gotten complicated.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🗡️ THE FULL TIMELINE:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Sword Art Online</strong> (Season 1)</li>
+                                <li><strong>Sword Art Online: Extra Edition</strong> (Optional recap + beach episode)</li>
+                                <li><strong>Sword Art Online II</strong> (Season 2)</li>
+                                <li><strong>Sword Art Online Alternative: Gun Gale Online</strong> (Spin-off, can be watched anytime after Season 2)</li>
+                                <li><strong>Sword Art Online Movie: Ordinal Scale</strong> (Canon movie, must watch before Season 3)</li>
+                                <li><strong>Sword Art Online: Alicization</strong> (Season 3, Part 1)</li>
+                                <li><strong>Sword Art Online: Alicization - War of Underworld</strong> (Season 3, Part 2 & 3)</li>
+                                <li><strong>Sword Art Online: Progressive</strong> (Movies) — These are floor-by-floor retellings of Season 1 from Asuna's perspective. Watch anytime after Season 1.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Attack on Titan -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#11</div>
+                    <div class="rank-content">
+                        <span class="series-tag">ACTION / THRILLER</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">ATTACK ON TITAN</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The final season's naming convention became a massive meme. Here is how to navigate 'The Final Season'.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🔥 THE COMPLETE RUMBLING:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Attack on Titan</strong> (Season 1)</li>
+                                <li><strong>Attack on Titan</strong> (Season 2)</li>
+                                <li><strong>Attack on Titan</strong> (Season 3 Part 1 & Part 2)</li>
+                                <li><strong>Attack on Titan: The Final Season</strong> (Part 1)</li>
+                                <li><strong>Attack on Titan: The Final Season</strong> (Part 2)</li>
+                                <li><strong>Attack on Titan: The Final Season - The Final Chapters</strong> (Special 1 & Special 2) — These are two massive feature-length episodes that conclude the series.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Bleach -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#12</div>
+                    <div class="rank-content">
+                        <span class="series-tag">SHONEN</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">BLEACH</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Bleach is 45% filler. If you don't skip the filler, the pacing will ruin the show for you.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🚫 THE FILLER-FREE PATH:</h4>
+                            <p style="margin-bottom: 1rem; font-weight: 500;">SKIP the following episodes completely: 33, 50, 64-108 (The Bount Arc), 128-137, 147-149, 168-189, 204-205, 213-214, 227-265, 287, 298-299, 303-305, 311-341, 355.</p>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Bleach (Original Series)</strong> — Watch the canon episodes only.</li>
+                                <li><strong>Bleach: Thousand-Year Blood War (TYBW)</strong> — The incredible modern revival that adapts the final arc of the manga.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Dragon Ball -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#13</div>
+                    <div class="rank-content">
+                        <span class="series-tag">SHONEN / ACTION</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">DRAGON BALL</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The grandfather of shonen. With GT, Super, Kai, and movies, it can get confusing.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🐉 THE CANON TIMELINE:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Dragon Ball</strong> — The original adventure with kid Goku.</li>
+                                <li><strong>Dragon Ball Z</strong> (or <strong>Dragon Ball Kai</strong>) — Kai is a remastered version of Z with the filler cut out. Highly recommended.</li>
+                                <li><strong>Dragon Ball Super</strong> — The official continuation. (You can watch the movies <em>Battle of Gods</em> and <em>Resurrection 'F'</em> instead of the first 27 episodes of Super).</li>
+                                <li><strong>Dragon Ball Super: Broly</strong> (Movie)</li>
+                                <li><strong>Dragon Ball Super: Super Hero</strong> (Movie)</li>
+                                <li><strong>Dragon Ball Daima</strong> — The newest canon series.</li>
+                            </ol>
+                            <p style="margin-top: 1rem; font-style: italic;">Note: <strong>Dragon Ball GT</strong> is not canon to the main manga timeline, but is a fun alternate universe watch.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- One Piece -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#14</div>
+                    <div class="rank-content">
+                        <span class="series-tag">ADVENTURE</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">ONE PIECE</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">1000+ episodes is daunting. Here is the optimal way to consume the greatest adventure ever told.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🏴‍☠️ THE GRAND LINE PATH:</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Option 1: One Pace</strong> — A fan project that meticulously edits the anime to match the manga's pacing, cutting out hundreds of hours of dragged-out scenes. Highly recommended for the post-timeskip arcs.</li>
+                                <li><strong>Option 2: The Manga</strong> — The absolute best pacing and art. Read the colored version if you prefer.</li>
+                                <li><strong>Option 3: The Remake (The One Piece)</strong> — Wait for the upcoming WIT Studio remake which will condense the early arcs.</li>
+                            </ul>
+                            <p style="margin-top: 1rem; font-weight: bold;">Essential Movies (Watch these when you catch up):</p>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li>One Piece Film: Strong World</li>
+                                <li>One Piece Film: Z</li>
+                                <li>One Piece Film: Gold</li>
+                                <li>One Piece: Stampede</li>
+                                <li>One Piece Film: Red</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Demon Slayer -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#15</div>
+                    <div class="rank-content">
+                        <span class="series-tag">ACTION / SUPERNATURAL</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">DEMON SLAYER (KIMETSU NO YAIBA)</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The TV series and Movies overlap, causing immense confusion for newcomers.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🌊 THE BREATHING ORDER:</h4>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Season 1</strong> (26 episodes)</li>
+                                <li><strong>Mugen Train Arc</strong> — You have a choice: watch the <em>Mugen Train Movie</em> OR the <em>Mugen Train TV Arc</em> (7 episodes). They are the exact same story. The TV arc just has one extra original episode at the start.</li>
+                                <li><strong>Entertainment District Arc</strong> (Season 2)</li>
+                                <li><strong>Swordsmith Village Arc</strong> (Season 3)</li>
+                                <li><strong>Hashira Training Arc</strong> (Season 4)</li>
+                                <li><strong>Infinity Castle Arc</strong> — Upcoming movie trilogy finale.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Baccano! -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#16</div>
+                    <div class="rank-content">
+                        <span class="series-tag">MYSTERY / ACTION</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">BACCANO!</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Baccano! is famously told out of chronological order, jumping between the 1930s, 1931, and 1932 simultaneously.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🚂 HOW TO WATCH IT:</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>The Broadcast Order (Eps 1-13 + 3 OVAs)</strong> — Do NOT try to watch this chronologically. The entire genius of the show is how the disparate timelines crash into each other. Watch it exactly as it was released.</li>
+                                <li><strong>Tip:</strong> The first episode is incredibly confusing. Stick with it until episode 4, and the pieces of the puzzle will start violently clicking together.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Danganronpa -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#17</div>
+                    <div class="rank-content">
+                        <span class="series-tag">THRILLER / MYSTERY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">DANGANRONPA</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Danganronpa 3 is an anime-original conclusion to the games, and it has the most insane airing order in anime history.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">🐻 THE ALTERNATING ORDER:</h4>
+                            <p style="margin-bottom: 1rem; font-weight: 500;">You must play Danganronpa 1, 2, and Ultra Despair Girls before watching this. <em>Danganronpa 3: The End of Hope's Peak High School</em> was broadcast as two separate shows simultaneously. You MUST alternate episodes.</p>
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li>Future Arc Episode 1</li>
+                                <li>Despair Arc Episode 1</li>
+                                <li>Future Arc Episode 2</li>
+                                <li>Despair Arc Episode 2</li>
+                                <li><em>...Continue alternating until Future Arc 12...</em></li>
+                                <li>Despair Arc Episode 11</li>
+                                <li><strong>Hope Arc</strong> (The 1-episode grand finale)</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Haruhi Suzumiya -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#18</div>
+                    <div class="rank-content">
+                        <span class="series-tag">SLICE OF LIFE / SCI-FI</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">THE MELANCHOLY OF HARUHI SUZUMIYA</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Famously broadcast out of chronological order in 2006 to preserve the climax, then rebroadcast in chronological order with new episodes in 2009.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1rem;">👽 WHICH ORDER TO CHOOSE?:</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Chronological Order (2009 Broadcast)</strong> — This is the recommended order for modern viewers. It places the 2006 and 2009 episodes in the correct timeline, leading perfectly into the movie.</li>
+                                <li><strong>The Endless Eight Warning:</strong> Episodes 12 through 19 of the 2009 order are the exact same time loop animated slightly differently 8 times. Most people watch episodes 1, 2, and 8 of the loop and skip the rest.</li>
+                                <li><strong>The Disappearance of Haruhi Suzumiya (Movie)</strong> — The absolute masterpiece conclusion. Watch immediately after the TV series.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            
+            <!-- AdSense Bottom of Page -->
+            <div class="container center" style="margin: 4rem auto 2rem auto;">
+                <div style="padding: 20px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BOTTOM OF PAGE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="manga-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="brand">
+                    <h2>OTAKU REALM</h2>
+                    <p>The ultimate manga-style anime blog. No fluff. Just raw data.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html">← BACK TO HOME</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 OTAKU REALM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../search.js?v=5.0"></script>
+</body>
+</html>

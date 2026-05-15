@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Explainers — Manga Edition — Otaku Realm</title>
+    <meta name="description" content="Discover how anime is made, the difference between shonen and seinen, and industry secrets.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://otakurealm09.netlify.app/pages/explainers.html">
+    <meta property="og:title" content="Anime Explainers — Otaku Realm">
+    <meta property="og:description" content="Industry secrets and deep dives into how Japanese animation works.">
+    <meta property="og:image" content="https://otakurealm09.netlify.app/hero.png">
+
+    <!-- Google Analytics 4 -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); // PASTE YOUR MEASUREMENT ID HERE
+    </script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=4.1">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script>
+        if (localStorage.getItem('manga-theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="manga-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="logo">
+                <span class="logo-text">OTAKU</span>
+                <span class="logo-accent">REALM</span>
+                <span class="logo-jp">オタク</span>
+            </a>
+            <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="Search Topics..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">🌙 NIGHT MODE</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- AdSense Below Navbar -->
+    <div class="container center" style="margin: 1rem auto;">
+        <div style="padding: 10px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BELOW NAVBAR</div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="hero manga-panel" style="min-height: 40vh;">
+        <div class="hero-content" style="grid-template-columns: 1fr;">
+            <div class="hero-text-wrap" style="text-align: center;">
+                <p class="hero-tag">CH. 3 • EXPLAINERS</p>
+                <h1 class="hero-title" style="font-size: 4rem;">
+                    INDUSTRY<br>
+                    <span class="text-outline">SECRETS</span>
+                </h1>
+                <p class="hero-sub" style="margin-bottom: 0;">
+                    Everything you wanted to know about how anime works.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="section bg-dots">
+        <div class="container">
+            <div class="power-rankings-list">
+
+                <!-- Production -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#01</div>
+                    <div class="rank-content">
+                        <span class="series-tag">INDUSTRY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">HOW ANIME IS MADE</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">A single 24-minute episode takes 1-3 months and dozens of artists. Here's the pipeline:</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <ol style="margin-left: 1.5rem; font-weight: 600; line-height: 2;">
+                                <li><strong>Pre-Production</strong> — Scripts, storyboards, and character designs.</li>
+                                <li><strong>Storyboarding (Ekonte)</strong> — The visual script showing camera angles.</li>
+                                <li><strong>Layout</strong> — Detailed background sketches and character placements.</li>
+                                <li><strong>Key Animation (Genga)</strong> — The start, peak, and end of each movement.</li>
+                                <li><strong>In-Between Animation (Douga)</strong> — Filling the gaps for fluid motion.</li>
+                                <li><strong>Coloring & Digital Paint</strong> — Digital coloring of each frame.</li>
+                                <li><strong>Compositing (Satsuei)</strong> — Merging backgrounds, layers, and lighting.</li>
+                                <li><strong>Post-Production</strong> — Sound design, voice acting, and editing.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Demographics -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#02</div>
+                    <div class="rank-content">
+                        <span class="series-tag">GENRES</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">SHONEN VS SEINEN VS SHOJO</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">These refer to the target demographic, not the genre. The most misunderstood concept in anime.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4>📘 Shonen (少年) — "Young Boy"</h4>
+                                <p><strong>Target:</strong> Boys 12-18<br><strong>Key note:</strong> "Shonen" doesn't mean action. Death Note is shonen.</p>
+                            </div>
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4>📗 Seinen (青年) — "Young Man"</h4>
+                                <p><strong>Target:</strong> Men 18-40<br><strong>Key note:</strong> One Punch Man is seinen, not shonen. Its satire is aimed at adult readers.</p>
+                            </div>
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4>📕 Shojo (少女) — "Young Girl"</h4>
+                                <p><strong>Target:</strong> Girls 12-18<br><strong>Key note:</strong> Shojo isn't just romance. Sailor Moon is a shojo action series.</p>
+                            </div>
+                            <div>
+                                <h4>📙 Josei (女性) — "Woman"</h4>
+                                <p><strong>Target:</strong> Women 18-40<br><strong>Key note:</strong> The most underrepresented demographic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sakuga -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#03</div>
+                    <div class="rank-content">
+                        <span class="series-tag">ANIMATION</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">WHAT IS "SAKUGA"?</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Sakuga refers to moments of exceptional animation quality.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <p style="margin-bottom: 1rem;">Most anime is animated "on twos" (12 drawings per second) or "on threes" (8 per second). Sakuga moments jump to "on ones" (24 drawings per second), creating noticeably smoother motion. But sakuga isn't just about frame count — it's about weight, timing, and expressiveness.</p>
+                            <h4 style="margin-bottom: 0.5rem;">FAMOUS SAKUGA MOMENTS:</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 1.8;">
+                                <li><strong>Naruto vs. Pain</strong> (Shippuden ep. 167)</li>
+                                <li><strong>Tanjiro vs. Rui</strong> (Demon Slayer ep. 19)</li>
+                                <li><strong>Mob vs. Koyama</strong> (Mob Psycho 100)</li>
+                                <li><strong>Gojo's Hollow Purple</strong> (Jujutsu Kaisen S2)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Isekai -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#04</div>
+                    <div class="rank-content">
+                        <span class="series-tag">GENRE TROPES</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">WHAT IS AN "ISEKAI"?</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The most dominant, controversial, and profitable genre in modern anime.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <p style="margin-bottom: 1rem;">"Isekai" (異世界) literally translates to "Another World". It refers to stories where a normal person from Earth is transported to, reborn in, or trapped in a parallel universe (usually a fantasy RPG-like world).</p>
+                            
+                            <h4 style="margin-bottom: 0.5rem;">WHY IS IT SO POPULAR?</h4>
+                            <p style="margin-bottom: 1rem;">Isekai acts as the ultimate form of escapism. The protagonist is usually an overworked office worker (salaryman) or a socially anxious student. They are hit by a truck (the famous "Truck-kun" meme) and wake up in a world where their mundane knowledge or video game skills make them overpowered.</p>
+
+                            <h4 style="margin-bottom: 0.5rem;">THE EVOLUTION:</h4>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 1.8;">
+                                <li><strong>The Classics:</strong> <em>Inuyasha, Digimon, Spirited Away</em> (Yes, these are technically isekai).</li>
+                                <li><strong>The Boom:</strong> <em>Sword Art Online</em> popularized the video-game mechanics trope in 2012.</li>
+                                <li><strong>The Modern Tropes:</strong> <em>Mushoku Tensei, Re:Zero, That Time I Got Reincarnated as a Slime</em>.</li>
+                                <li><strong>The Parodies:</strong> <em>KonoSuba</em> (making fun of the genre).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Archetypes -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#05</div>
+                    <div class="rank-content">
+                        <span class="series-tag">CULTURE</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">THE "DERE" CHARACTER ARCHETYPES</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Tsundere, Yandere, Kuudere... what do they actually mean?</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <p style="margin-bottom: 1rem;">"Dere-dere" is a Japanese onomatopoeia for being lovey-dovey or infatuated. Anime takes this root word and combines it with other traits to create specific, recurring character personality types.</p>
+                            
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4 style="color: #e53e3e;">😠 Tsundere (Tsun-tsun + Dere-dere)</h4>
+                                <p>Hostile, violent, or cold on the outside, but secretly warm and loving on the inside. They often cover up their embarrassment with anger.<br><em>Examples: Asuka (Evangelion), Taiga (Toradora), Rin Tohsaka (Fate/stay night).</em></p>
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4 style="color: #805ad5;">🔪 Yandere (Yanderu + Dere-dere)</h4>
+                                <p>"Yanderu" means to be mentally ill. A Yandere starts out sweet and loving, but their infatuation turns into a psychotic, violent obsession. They will hurt anyone who gets near their love interest.<br><em>Examples: Yuno Gasai (Future Diary).</em></p>
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4 style="color: #3182ce;">🧊 Kuudere (Kūru + Dere-dere)</h4>
+                                <p>"Kuru" comes from the English word "cool". These characters are emotionless, cynical, and blunt. They slowly thaw out over time to reveal their caring side.<br><em>Examples: Rei Ayanami (Evangelion), Mikasa Ackerman (Attack on Titan).</em></p>
+                            </div>
+
+                            <div>
+                                <h4 style="color: #38a169;">☀️ Dandere (Danmari + Dere-dere)</h4>
+                                <p>"Danmari" means silence. These characters are painfully shy, quiet, and socially awkward, but become talkative and sweet once they trust someone.<br><em>Examples: Hinata Hyuga (Naruto).</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Filler -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#06</div>
+                    <div class="rank-content">
+                        <span class="series-tag">INDUSTRY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">WHY DOES ANIME "FILLER" EXIST?</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Why do long-running shonen shows suddenly stop the main plot for a 20-episode arc about baking a cake or fighting robots?</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;">THE MANGA PROBLEM:</h4>
+                            <p style="margin-bottom: 1rem;">Most anime are adaptations of weekly manga. A single anime episode usually covers 2 to 3 manga chapters. Therefore, an anime will catch up to the source material very quickly.</p>
+                            <p style="margin-bottom: 1rem;">In the 90s and 2000s, shows like <em>Naruto, Bleach, and One Piece</em> aired continuously every week, all year round. When the anime caught up to the manga, the studio had two choices: cancel the show (losing their TV time slot) or create "filler" (original, non-canon stories) to give the manga author time to write more chapters.</p>
+                            
+                            <h4 style="margin-bottom: 0.5rem;">THE MODERN SOLUTION: THE SEASONAL MODEL</h4>
+                            <p>Today, filler is almost completely dead. Instead of airing continuously, modern hits like <em>Jujutsu Kaisen</em> and <em>Demon Slayer</em> air in 12 or 24-episode "seasons," take a year-long break to let the manga get ahead, and then return. This results in zero filler and vastly superior animation quality.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- What is a Cour -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#07</div>
+                    <div class="rank-content">
+                        <span class="series-tag">BROADCASTING</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">WHAT IS A "COUR"?</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Why do anime seasons always have exactly 12 or 24 episodes? It all comes down to Japanese TV broadcasting schedules.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <p style="margin-bottom: 1rem;">A "Cour" (クール, from the French word <em>cours</em>) is a three-month block of television broadcasting. The Japanese TV year is strictly divided into four seasons:</p>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 1.8; margin-bottom: 1rem;">
+                                <li><strong>Winter:</strong> January – March</li>
+                                <li><strong>Spring:</strong> April – June</li>
+                                <li><strong>Summer:</strong> July – September</li>
+                                <li><strong>Fall:</strong> October – December</li>
+                            </ul>
+                            <p style="margin-bottom: 1rem;">Since there are 52 weeks in a year, one 3-month season consists of exactly 13 weeks. This means a "1-cour" anime will have 12 or 13 episodes. A "2-cour" anime will run for half a year and have 24-26 episodes.</p>
+                            <p><strong>Split-Cour:</strong> This is a modern trend where a studio produces a 24-episode season, but broadcasts the first 12 episodes, takes a 3-month break to polish the animation, and broadcasts the final 12 episodes later (e.g., <em>Spy x Family</em> Season 1).</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Source Material -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#08</div>
+                    <div class="rank-content">
+                        <span class="series-tag">LITERATURE</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">MANGA VS. LIGHT NOVELS VS. VISUAL NOVELS</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Not all anime are based on comic books. The source material radically changes how a story is paced.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4 style="margin-bottom: 0.5rem;">📖 Manga (e.g., Jujutsu Kaisen, Chainsaw Man)</h4>
+                                <p>Japanese comic books. They are highly visual, making them the easiest to adapt into anime. The pacing is fast, dialogue is concise, and action scenes are already storyboarded.</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4 style="margin-bottom: 0.5rem;">📚 Light Novels (e.g., Sword Art Online, Re:Zero)</h4>
+                                <p>Actual text-heavy books (novels) with a few anime-style illustrations scattered throughout. Because they are books, they contain massive amounts of internal monologue and world-building. When adapted to anime, studios are forced to cut a lot of this internal dialogue, which is why Light Novel protagonists often feel more generic in the anime than in the books.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">🎮 Visual Novels (e.g., Fate/Stay Night, Steins;Gate)</h4>
+                                <p>Interactive video games that are mostly reading text over static backgrounds. Crucially, they have multiple "routes" (different endings based on player choices). Adapting these is a nightmare because studios have to decide whether to animate just one route, or try to smash multiple alternate timelines into a single coherent anime.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Production Committee -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#09</div>
+                    <div class="rank-content">
+                        <span class="series-tag">BUSINESS</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">THE "PRODUCTION COMMITTEE" EXPLAINED</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Why do incredibly successful anime studios (like MAPPA or Madhouse) still struggle financially?</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <p style="margin-bottom: 1rem;">Anime is incredibly expensive to make (roughly $2-3 million per season). To mitigate risk, Japan uses the <strong>Production Committee (Seisaku Iinkai)</strong> system. A group of companies pool their money together to fund the anime. A typical committee looks like this:</p>
+                            <ul style="margin-left: 1.5rem; font-weight: 600; line-height: 1.8; margin-bottom: 1rem;">
+                                <li>The Publisher (wants to sell more manga)</li>
+                                <li>A Toy Company (wants to sell figures)</li>
+                                <li>A Record Label (wants to sell the opening song)</li>
+                                <li>A TV Station (wants ad revenue)</li>
+                            </ul>
+                            <p style="margin-bottom: 1rem;"><strong>The Catch:</strong> The animation studio is usually just a hired contractor. They are paid a flat fee to make the show. If the anime goes viral and makes a billion dollars in merchandise and streaming rights... <em>all that money goes to the Production Committee.</em> The studio sees almost none of it. This is why animators are notoriously underpaid.</p>
+                            <p><em>(Note: Studios like Kyoto Animation and sometimes MAPPA are starting to invest their own money into committees to keep the profits, which is a massive risk but highly rewarding).</em></p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Mecha History -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#10</div>
+                    <div class="rank-content">
+                        <span class="series-tag">HISTORY</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">MECHA HISTORY: SUPER VS. REAL</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">The giant robot genre is the backbone of the anime industry, but it underwent a massive, dark shift in 1979.</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px dashed var(--black);">
+                                <h4 style="color: #dd6b20;">🤖 Super Robots (1970s - Present)</h4>
+                                <p>Shows like <em>Mazinger Z</em> and <em>Gurren Lagann</em>. In these shows, the robot is practically a magical superhero. It usually has a unique, heroic design, yells out attack names ("ROCKET PUNCH!"), and is powered by the pilot's raw emotion and courage. The villains are usually alien invaders or monsters.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 style="color: #3182ce;">⚙️ Real Robots (1979 - Present)</h4>
+                                <p>Created by Yoshiyuki Tomino with <em>Mobile Suit Gundam</em>. Tomino stripped away the magic. The robots are now mass-produced military weapons (like tanks or fighter jets). They break, run out of ammo, and require maintenance. The villains aren't monsters—they are other humans fighting for complex political reasons. The focus shifted from "cool heroes" to the tragic horrors of war.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Original Endings -->
+                <article class="rank-panel article-panel">
+                    <div class="rank-number" style="font-size: 2rem;">#11</div>
+                    <div class="rank-content">
+                        <span class="series-tag">PRODUCTION</span>
+                        <h3 style="display:block; margin-top: 0.5rem;">WHY DO "ANIME ORIGINAL ENDINGS" HAPPEN?</h3>
+                        <div class="manga-power-bar"><div class="fill" style="width: 100%"></div></div>
+                        <p style="font-weight: 500; margin-bottom: 1rem;">Why did Fullmetal Alchemist (2003), Soul Eater, and Akame ga Kill suddenly diverge from the manga and invent their own, completely different conclusions?</p>
+                        
+                        <div class="article-body" style="background: var(--white); border: 2px solid var(--black); padding: 1.5rem;">
+                            <p style="margin-bottom: 1rem;">When an anime is airing weekly and catches up to the manga, the studio has to make a choice. While shows like Naruto chose to air "filler" until the manga author wrote more chapters, other studios took a bolder approach: <strong>just write a new ending.</strong></p>
+                            <p style="margin-bottom: 1rem;">With the manga author's permission (or sometimes basic plot outlines), the anime writers will diverge from the canon path and invent an entirely original final arc to wrap up the show neatly. This means the fans get a conclusive ending without waiting 5 years for the manga to finish.</p>
+                            <p>Sometimes these endings are universally hated (like <em>Soul Eater</em> or <em>Promised Neverland S2</em>). Other times, they are masterfully crafted and beloved (like the 2003 version of <em>Fullmetal Alchemist</em>, which is so good that many prefer its dark, original ending to the canon manga ending found in <em>Brotherhood</em>).</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            
+            <!-- AdSense Bottom of Page -->
+            <div class="container center" style="margin: 4rem auto 2rem auto;">
+                <div style="padding: 20px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BOTTOM OF PAGE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="manga-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="brand">
+                    <h2>OTAKU REALM</h2>
+                    <p>The ultimate manga-style anime blog. No fluff. Just raw data.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html">← BACK TO HOME</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 OTAKU REALM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../search.js?v=5.0"></script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Detail — Otaku Realm</title>
+    <meta name="description" content="In-depth analysis, stats, and reviews for your favorite anime.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" id="og-url" content="">
+    <meta property="og:title" id="og-title" content="Anime Detail — Otaku Realm">
+    <meta property="og:description" id="og-desc" content="In-depth analysis, stats, and reviews for your favorite anime.">
+    <meta property="og:image" id="og-image" content="">
+
+    <!-- Google Analytics 4 -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); // PASTE YOUR MEASUREMENT ID HERE
+    </script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=4.1">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <style>
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr 280px;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1100px) {
+            .detail-grid {
+                grid-template-columns: 320px 1fr;
+            }
+            .stats-panel {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .stats-panel {
+                grid-column: span 1;
+            }
+            .hero-title { font-size: 3rem !important; }
+            .cat-panel { padding: 1.5rem !important; }
+        }
+
+        .poster-wrapper {
+            width: 100%;
+            aspect-ratio: 2/3;
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+            background: var(--white);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .poster-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .panel-label {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 4px 12px;
+            font-weight: 900;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 2px solid var(--black);
+        }
+
+        .cat-panel {
+            background: var(--white);
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+            position: relative;
+            padding: 2.5rem !important;
+            margin-top: 15px;
+        }
+
+        .dark-panel {
+            background: var(--black) !important;
+            color: var(--white) !important;
+            box-shadow: 8px 8px 0 var(--gray-dark) !important;
+        }
+
+        .rank-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+            padding: 0.8rem 2rem;
+            min-width: 150px;
+            margin-bottom: 1rem;
+        }
+
+        .rank-label {
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--gray-dark);
+            margin-bottom: -5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="manga-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="logo">
+                <span class="logo-text">OTAKU</span>
+                <span class="logo-accent">REALM</span>
+                <span class="logo-jp">オタク</span>
+            </a>
+            <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="Search Topics..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">🌙 NIGHT MODE</button></li>
+            </ul>
+        </div>
+    <!-- AdSense Below Navbar -->
+    <div class="container center" style="margin: 1rem auto;">
+        <div style="padding: 10px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BELOW NAVBAR</div>
+    </div>
+
+    <!-- Content Area -->
+    <main class="section bg-dots" style="min-height: 90vh;">
+        <div class="container" id="detail-container">
+            <!-- Loading State -->
+            <div id="loading" class="center">
+                <h2 class="text-outline" style="font-size: 4rem;">LOADING...</h2>
+            </div>
+
+            <!-- Error State -->
+            <div id="error" class="center" style="display: none;">
+                <h2 class="text-outline" style="font-size: 4rem;">DATA NOT FOUND</h2>
+                <p>We haven't added a deep dive for this anime yet. Check back soon!</p>
+                <a href="../index.html" class="btn btn-manga-alt" style="margin-top: 2rem;">GO BACK HOME</a>
+            </div>
+
+                <div id="content" style="display: none;">
+                    <!-- Top Header Section (Matches Original Premium Style) -->
+                    <div class="hero-text-wrap" style="margin-bottom: 2rem; border: 4px solid var(--black); padding: 2.5rem; background: var(--white); box-shadow: 10px 10px 0 var(--black); position: relative;">
+                        <p class="hero-tag" id="anime-tags" style="background: none; color: var(--black); font-size: 0.9rem; margin-bottom: 0.8rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;">SHONEN • ACTION • DRAMA</p>
+                        <h1 class="hero-title" id="anime-title" style="font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 0.9; margin-bottom: 2rem; font-weight: 900; text-transform: uppercase;">ANIME TITLE</h1>
+                        
+                        <div style="display: flex; align-items: stretch; gap: 1rem; flex-wrap: wrap;">
+                            <div style="background: var(--black); color: var(--white); padding: 0.8rem 1.5rem; font-size: clamp(1.2rem, 4vw, 2rem); font-weight: 900; border: var(--border-w) solid var(--black); display: flex; align-items: center;" id="anime-rating">8.0/10</div>
+                            <button id="watchlist-btn" class="btn btn-manga px-5 py-3" style="font-weight: 900; letter-spacing: 1px; font-size: 1.1rem; border: var(--border-w) solid var(--black); display: flex; align-items: center; gap: 10px; flex-grow: 1; justify-content: center;">
+                                <span id="star-icon">☆</span> ADD TO WATCHLIST
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grid Section (Balanced Layout) -->
+                    <div class="detail-grid">
+                        
+                        <!-- Panel 1: Cover Art (Fixed Aspect) -->
+                        <article class="cat-panel" style="margin: 0;">
+                            <div class="panel-label">COVER ART</div>
+                            <div style="border: 4px solid var(--black); box-shadow: 8px 8px 0 var(--black); background: #eee; aspect-ratio: 2/3; overflow: hidden; margin-top: 10px;">
+                                <img id="anime-image" src="" alt="Anime Poster" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </article>
+
+                        <!-- Panel 2: Description -->
+                        <article class="cat-panel" style="margin: 0;">
+                            <div class="panel-label">SYNOPSIS</div>
+                            <div style="padding-top: 10px;">
+                                <p id="anime-desc" style="font-size: 1.1rem; line-height: 1.6; color: var(--black); font-weight: 500;"></p>
+                            </div>
+                        </article>
+
+                        <!-- Panel 3: Anime Stats -->
+                        <article class="cat-panel dark-panel" style="margin: 0; background: var(--black); color: var(--white);">
+                            <div class="panel-label">DATA BANK</div>
+                            <div style="display: grid; gap: 1.2rem; margin-top: 1rem; border-top: 2px solid var(--white); padding-top: 1.5rem;">
+                                <div>
+                                    <strong style="display: block; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 5px; opacity: 0.8;">YEAR</strong>
+                                    <span id="anime-year" style="font-size: 1.1rem; font-weight: 900;">-</span>
+                                </div>
+                                <div>
+                                    <strong style="display: block; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 5px; opacity: 0.8;">STUDIO</strong>
+                                    <span id="anime-studio" style="font-size: 1.1rem; font-weight: 900;">-</span>
+                                </div>
+                                <div>
+                                    <strong style="display: block; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 5px; opacity: 0.8;">EPISODES</strong>
+                                    <span id="anime-episodes" style="font-size: 1.1rem; font-weight: 900;">-</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Analysis Section -->
+                    <div id="extra-info" style="margin-top: 2.5rem; display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                         <article class="cat-panel" style="margin: 0;">
+                            <div class="panel-label">CRITICAL ANALYSIS</div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 1rem;">
+                                <div>
+                                    <h4 style="font-weight: 900; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                        <span style="background: var(--black); color: var(--white); padding: 2px 8px; font-size: 0.7rem;">PROS</span>
+                                    </h4>
+                                    <ul id="anime-pros" style="list-style: none; padding: 0; display: grid; gap: 10px;"></ul>
+                                </div>
+                                <div>
+                                    <h4 style="font-weight: 900; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                        <span style="background: var(--black); color: var(--white); padding: 2px 8px; font-size: 0.7rem;">CONS</span>
+                                    </h4>
+                                    <ul id="anime-cons" style="list-style: none; padding: 0; display: grid; gap: 10px;"></ul>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="cat-panel verdict-panel" style="margin: 0; background: var(--gray-light); border-style: dashed;">
+                             <div class="panel-label">FINAL VERDICT</div>
+                             <div style="padding-top: 1rem;">
+                                <p id="anime-verdict" style="font-size: 1.2rem; font-weight: 700; font-style: italic; line-height: 1.5; color: var(--black);"></p>
+                             </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- AdSense Bottom of Article -->
+                <div class="container center" style="margin: 4rem auto 2rem auto;">
+                    <div style="padding: 20px; border: 1px dashed var(--gray-light); font-size: 0.7rem; color: var(--gray-dark);">ADSENSE UNIT: BOTTOM OF ARTICLE</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="manga-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="brand">
+                    <h2>OTAKU REALM</h2>
+                    <p>The ultimate manga-style anime blog. No fluff. Just raw data.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="contact.html">CONTACT</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 OTAKU REALM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const animeId = urlParams.get('id');
+            const source = urlParams.get('source') || 'local';
+            const watchlistBtn = document.getElementById('watchlist-btn');
+
+            if (!animeId) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            let currentAnime = null;
+
+            try {
+                console.log(`[OtakuRealm] Loading: ${animeId} (Source: ${source})`);
+                
+                // 1. Try local DB if source is local
+                if (source === 'local') {
+                    console.log('[OtakuRealm] Checking local databases...');
+                    
+                    // Use relative paths for subpage compatibility
+                    const [rootRes, dataRes] = await Promise.all([
+                        fetch('../anime-db.json').catch(() => null),
+                        fetch('../data/anime-db.json').catch(() => null)
+                    ]);
+                    if (rootRes && rootRes.ok) {
+                        const db = await rootRes.json();
+                        if (db[animeId]) {
+                            currentAnime = { ...db[animeId], id: animeId };
+                        } else {
+                            // Title fallback: search for title match in object values
+                            const entry = Object.entries(db).find(([k, v]) => 
+                                v.title && v.title.toLowerCase().includes(animeId.replace(/-/g, ' ').toLowerCase())
+                            );
+                            if (entry) currentAnime = { ...entry[1], id: entry[0] };
+                        }
+
+                        if (currentAnime) {
+                            // Enrichment fallback
+                            if (!currentAnime.image || !currentAnime.description) {
+                                try {
+                                    const enrichRes = await fetch(`https://api.jikan.moe/v4/anime?q=${currentAnime.title || animeId}&limit=1`);
+                                    if (enrichRes.ok) {
+                                        const enrichData = await enrichRes.json();
+                                        if (enrichData.data && enrichData.data[0]) {
+                                            const a = enrichData.data[0];
+                                            currentAnime.image = currentAnime.image || a.images.jpg.large_image_url;
+                                            currentAnime.description = currentAnime.description || a.synopsis;
+                                            currentAnime.studio = currentAnime.studio || a.studios.map(s => s.name).join(', ');
+                                            currentAnime.episodes = currentAnime.episodes || a.episodes;
+                                            currentAnime.year = currentAnime.year || a.year;
+                                        }
+                                    }
+                                } catch(e) {}
+                            }
+                        }
+                    }
+
+                    if (!currentAnime && dataRes && dataRes.ok) {
+                        const arrayDb = await dataRes.json();
+                        const found = arrayDb.find(a => String(a.id) === animeId);
+                        if (found) {
+                            currentAnime = { ...found, id: found.id };
+                            if (!currentAnime.image) {
+                                 try {
+                                    const enrichRes = await fetch(`https://api.jikan.moe/v4/anime?q=${currentAnime.title}&limit=1`);
+                                    if (enrichRes.ok) {
+                                        const enrichData = await enrichRes.json();
+                                        if (enrichData.data && enrichData.data[0]) {
+                                            currentAnime.image = enrichData.data[0].images.jpg.large_image_url;
+                                        }
+                                    }
+                                } catch(e) {}
+                            }
+                        }
+                    }
+                }
+
+                // 2. Try Jikan API if source is jikan or if local not found
+                if (!currentAnime || source === 'jikan') {
+                    const jikanUrl = isNaN(animeId) 
+                        ? `https://api.jikan.moe/v4/anime?q=${animeId.replace(/-/g, ' ')}&limit=1`
+                        : `https://api.jikan.moe/v4/anime/${animeId}`;
+                    
+                    const jikanRes = await fetch(jikanUrl);
+                    if (jikanRes.ok) {
+                        const jikanData = await jikanRes.json();
+                        const a = Array.isArray(jikanData.data) ? jikanData.data[0] : jikanData.data;
+                        if (a) {
+                            // Keep existing local analysis if we found it in step 1
+                            const lp = currentAnime ? currentAnime.pros : null;
+                            const lc = currentAnime ? currentAnime.cons : null;
+                            const lv = currentAnime ? currentAnime.verdict : null;
+
+                            currentAnime = {
+                                id: a.mal_id,
+                                title: a.title,
+                                rating: a.score ? `${a.score.toFixed(1)}/10` : 'N/A',
+                                tags: a.genres.map(g => g.name.toUpperCase()).join(' • '),
+                                description: a.synopsis || 'No summary available.',
+                                image: a.images.jpg.large_image_url,
+                                studio: a.studios.map(s => s.name).join(', ') || 'N/A',
+                                episodes: a.episodes || 'N/A',
+                                status: a.status,
+                                year: a.year || (a.aired && a.aired.prop && a.aired.prop.from.year) || 'N/A',
+                                pros: lp,
+                                cons: lc,
+                                verdict: lv
+                            };
+                        }
+                    }
+                }
+
+                if (!currentAnime) throw new Error("Anime not found.");
+
+                // Generate Dynamic Content if missing or short
+                if (!currentAnime.pros || !currentAnime.verdict || (currentAnime.description && currentAnime.description.length < 200)) {
+                    const genres = (currentAnime.tags || "").toLowerCase();
+                    const title = currentAnime.title || "This series";
+                    
+                    let pros = currentAnime.pros || ["Top-tier Art Direction", "Compelling Narrative", "Memorable Sound Design", "Pioneering Character Writing", "Masterful World Building"];
+                    let cons = currentAnime.cons || ["Niche Storytelling", "Demanding Pacing", "Complex Lore"];
+                    
+                    // Detailed Synopsis Generation (Padding if short)
+                    let detailedDesc = currentAnime.description || currentAnime.desc || "";
+                    if (detailedDesc.length < 300) {
+                        detailedDesc += ` ${title} represents a pivotal moment in the ${genres || 'anime'} landscape, pushing the boundaries of traditional storytelling through its unique thematic exploration and striking visual identity. It delves deep into the psychological and emotional states of its characters, creating a narrative that is both personal and grand in scope. As the story unfolds, it challenges the viewer to look beyond the surface level tropes and engage with the underlying philosophical questions that define the human experience in this meticulously crafted world.`;
+                    }
+                    currentAnime.description = detailedDesc;
+
+                    // Substantial Final Verdict (7-8 lines / ~80-100 words)
+                    let verdict = currentAnime.verdict || "";
+                    if (verdict.length < 200) {
+                        verdict = `FINAL VERDICT: ${title.toUpperCase()} IS AN ABSOLUTE MASTERPIECE THAT TRANSCENDS THE BOUNDARIES OF ITS GENRE. IT OFFERS A RARE COMBINATION OF INTELLECTUAL DEPTH, EMOTIONAL RESONANCE, AND PURE SPECTACLE THAT IS SELDOM SEEN IN MODERN PRODUCTIONS. FROM THE FIRST EPISODE TO THE LAST, IT MAINTAINS A LEVEL OF QUALITY AND ARTISTIC VISION THAT IS SIMPLY UNMATCHED. WHETHER YOU ARE A SEASONED FAN OR A NEWCOMER TO THE WORLD OF ANIME, THIS IS A SERIES THAT DEMANDS YOUR FULL ATTENTION AND WILL LEAVE A LASTING IMPACT ON YOUR PERSPECTIVE OF STORYTELLING. IT IS NOT JUST A SHOW; IT IS A CULTURAL LANDMARK THAT REVEALS THE TRUE POTENTIAL OF ANIMATION AS A MEDIUM FOR SERIOUS ARTISTIC EXPRESSION. A MUST-WATCH FOR EVERYONE.`;
+                    }
+                    
+                    if (genres.includes('action')) pros.push("Fluid Combat Choreography");
+                    if (genres.includes('comedy')) pros.push("Witty & Sharp Dialogue");
+                    
+                    currentAnime.pros = pros;
+                    currentAnime.cons = cons;
+                    currentAnime.verdict = verdict.toUpperCase();
+                }
+
+                // Final image fix
+                if (currentAnime.image && currentAnime.image.startsWith('data/')) {
+                    currentAnime.image = '../' + currentAnime.image;
+                }
+
+                // Populate UI (Unified for both local and Jikan)
+                document.getElementById('anime-title').textContent = currentAnime.title || currentAnime.name || 'Unknown Title';
+                document.getElementById('anime-rating').textContent = currentAnime.rating || 'N/A';
+                document.getElementById('anime-tags').textContent = currentAnime.tags || currentAnime.genres || 'GENRES UNKNOWN';
+                document.getElementById('anime-desc').textContent = currentAnime.description || currentAnime.desc || 'No summary available.';
+                document.getElementById('anime-verdict').textContent = currentAnime.verdict || 'A MUST-WATCH FOR ALL ANIME FANS.';
+                document.getElementById('anime-image').src = currentAnime.image || '../data/img/placeholder.jpg';
+                
+                // Data Bank
+                document.getElementById('anime-studio').textContent = currentAnime.studio || 'N/A';
+                document.getElementById('anime-episodes').textContent = currentAnime.episodes || 'N/A';
+                document.getElementById('anime-year').textContent = currentAnime.year || 'N/A';
+
+                // Pros & Cons
+                const prosList = document.getElementById('anime-pros');
+                prosList.innerHTML = '';
+                (currentAnime.pros || []).forEach(p => {
+                    const li = document.createElement('li');
+                    li.style.marginBottom = '0.8rem';
+                    li.style.fontSize = '1rem';
+                    li.style.fontWeight = '700';
+                    li.innerHTML = `<span style="color: var(--black); margin-right: 12px; font-weight: 900;">[+]</span>${p.toUpperCase()}`;
+                    prosList.appendChild(li);
+                });
+
+                const consList = document.getElementById('anime-cons');
+                consList.innerHTML = '';
+                (currentAnime.cons || []).forEach(c => {
+                    const li = document.createElement('li');
+                    li.style.marginBottom = '0.8rem';
+                    li.style.fontSize = '1rem';
+                    li.style.fontWeight = '700';
+                    li.innerHTML = `<span style="color: var(--black); margin-right: 12px; font-weight: 900;">[-]</span>${c.toUpperCase()}`;
+                    consList.appendChild(li);
+                });
+
+                // Show Content
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                document.title = `${currentAnime.title} — Otaku Realm`;
+
+                // Update Meta Tags
+                document.getElementById('og-title').setAttribute('content', `${currentAnime.title} — Otaku Realm`);
+                document.getElementById('og-desc').setAttribute('content', currentAnime.description.substring(0, 160));
+                document.getElementById('og-image').setAttribute('content', currentAnime.image);
+                document.getElementById('og-url').setAttribute('content', window.location.href);
+
+                // Watchlist Button
+                if (typeof window.getWatchlist === 'function') {
+                    const updateUI = () => {
+                        const watchlist = window.getWatchlist();
+                        const isSaved = watchlist.some(item => String(item.id) === String(currentAnime.id));
+                        const star = document.getElementById('star-icon');
+                        if (star) star.textContent = isSaved ? '★' : '☆';
+                        watchlistBtn.innerHTML = isSaved ? `<span id="star-icon">★</span> REMOVE FROM WATCHLIST` : `<span id="star-icon">☆</span> ADD TO WATCHLIST`;
+                        watchlistBtn.className = isSaved ? 'btn btn-manga-alt px-5 py-3' : 'btn btn-manga px-5 py-3';
+                    };
+                    updateUI();
+                    watchlistBtn.onclick = () => {
+                        window.toggleWatchlist(currentAnime);
+                        updateUI();
+                    };
+                }
+
+            } catch (err) {
+                console.error('[OtakuRealm] Load error:', err);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.querySelector('#error p').textContent = `We couldn't load data for "${animeId}". Error: ${err.message}`;
+            }
+        });
+    </script>
+    <script src="../script.js"></script>
+    <script src="../search.js?v=5.0"></script>
+</body>
+</html>

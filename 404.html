@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found — Otaku Realm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4.1">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        .error-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .error-code {
+            font-size: 15rem;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            color: var(--black);
+            -webkit-text-stroke: 4px var(--black);
+            color: transparent;
+        }
+        .error-kanji {
+            position: absolute;
+            font-size: 30rem;
+            opacity: 0.05;
+            z-index: 0;
+            font-family: var(--font-jp);
+        }
+    </style>
+</head>
+<body class="bg-dots">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="manga-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-text">OTAKU</span>
+                <span class="logo-accent">REALM</span>
+                <span class="logo-jp">オタク</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="error-container">
+        <div class="error-kanji">迷</div>
+        <h1 class="error-code">404</h1>
+        <h2 style="font-size: 3rem; margin-bottom: 2rem;">PAGE NOT FOUND</h2>
+        <p style="font-size: 1.2rem; max-width: 600px; margin-bottom: 3rem; font-weight: 600;">
+            It seems you've wandered into a filler episode. This page doesn't exist in our current timeline.
+        </p>
+        <a href="index.html" class="btn btn-manga-alt" style="font-size: 1.5rem; padding: 1rem 3rem;">BACK TO REALITY</a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="manga-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 OTAKU REALM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
