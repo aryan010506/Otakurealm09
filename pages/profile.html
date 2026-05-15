@@ -100,6 +100,30 @@
                     </div>
                 </div>
 
+                <!-- ── Avatar Selection ───────────────────────────────────────── -->
+                <div class="section-header manga-header" style="margin-bottom:1.5rem; margin-top: 1rem;">
+                    <h2 class="section-title">EDIT <span>AVATAR</span></h2>
+                    <div class="header-line"></div>
+                </div>
+                
+                <div class="avatar-selector-wrap" id="avatar-section">
+                    <p style="font-weight:800; margin-bottom:1rem; font-size:0.85rem;">CHOOSE A MANGA ICON OR UPLOAD IMAGE:</p>
+                    <div class="avatar-grid" id="avatar-grid">
+                        <button class="preset-avatar-btn" data-avatar="⚔️">⚔️</button>
+                        <button class="preset-avatar-btn" data-avatar="👁️">👁️</button>
+                        <button class="preset-avatar-btn" data-avatar="👺">👺</button>
+                        <button class="preset-avatar-btn" data-avatar="🐉">🐉</button>
+                        <button class="preset-avatar-btn" data-avatar="⚡">⚡</button>
+                        <button class="preset-avatar-btn" data-avatar="🌸">🌸</button>
+                        <button class="preset-avatar-btn" data-avatar="⛩️">⛩️</button>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-top: 1.5rem; padding-top: 1rem; border-top: 2px dashed var(--black);">
+                        <input type="file" id="avatar-upload" accept="image/*" style="display:none;">
+                        <button class="btn btn-manga-alt" id="trigger-upload" style="font-size:0.8rem; padding: 0.4rem 1rem;">📁 UPLOAD FROM GALLERY</button>
+                        <span id="avatar-upload-status" style="font-weight:800; font-size:0.75rem; opacity:0.6;">MAX 1MB</span>
+                    </div>
+                </div>
+
                 <!-- Comment history -->
                 <div class="section-header manga-header" style="margin-bottom:2rem;">
                     <h2 class="section-title">COMMENT <span>HISTORY</span></h2>
@@ -145,8 +169,21 @@
         document.getElementById('profile-main').style.display = 'block';
 
         // ── Populate user card ───────────────────────────────
-        const initials = user.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
-        document.getElementById('profile-avatar').textContent  = initials || '人';
+        function renderAvatar(userData) {
+            const avatarEl = document.getElementById('profile-avatar');
+            if (userData.avatar) {
+                if (userData.avatar.startsWith('data:image')) {
+                    avatarEl.innerHTML = `<img src="${userData.avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+                } else {
+                    avatarEl.textContent = userData.avatar;
+                }
+            } else {
+                const initials = userData.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+                avatarEl.textContent  = initials || '人';
+            }
+        }
+        
+        renderAvatar(user);
         document.getElementById('profile-name').textContent    = user.name.toUpperCase();
         document.getElementById('profile-email').textContent   = user.email;
         document.getElementById('profile-age').textContent     = user.age + ' yrs';
@@ -212,6 +249,49 @@
         document.getElementById('profile-logout-btn').addEventListener('click', () => {
             window.Auth.logout();
             window.location.href = '../index.html';
+        });
+
+        // ── Avatar Logic ──────────────────────────────────────
+        const presetBtns = document.querySelectorAll('.preset-avatar-btn');
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const icon = btn.getAttribute('data-avatar');
+                if (window.Auth.updateUserAvatar) {
+                    const res = window.Auth.updateUserAvatar(icon);
+                    if (res.success) {
+                        renderAvatar(res.user);
+                        document.getElementById('avatar-upload-status').textContent = 'Avatar updated!';
+                        setTimeout(() => document.getElementById('avatar-upload-status').textContent = 'MAX 1MB', 2000);
+                    }
+                }
+            });
+        });
+
+        document.getElementById('trigger-upload').addEventListener('click', () => {
+            document.getElementById('avatar-upload').click();
+        });
+
+        document.getElementById('avatar-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            if (file.size > 1024 * 1024) {
+                document.getElementById('avatar-upload-status').textContent = 'ERROR: FILE TOO LARGE (MAX 1MB)';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64 = event.target.result;
+                if (window.Auth.updateUserAvatar) {
+                    const res = window.Auth.updateUserAvatar(base64);
+                    if (res.success) {
+                        renderAvatar(res.user);
+                        document.getElementById('avatar-upload-status').textContent = 'Image uploaded!';
+                    }
+                }
+            };
+            reader.readAsDataURL(file);
         });
     });
 

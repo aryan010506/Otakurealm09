@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    OTAKU REALM — Manga / Brutalist Aesthetic
    Mobile-First Responsive CSS  (v4.2)
    ============================================================ */
@@ -55,6 +55,23 @@
 .nav-user-dropdown .dropdown-item:last-child { border-bottom: none; }
 .nav-user-dropdown .dropdown-item:hover { background: var(--black);
     color: var(--white); }
+
+/* Mobile fixes for user dropdown */
+@media (max-width: 640px) {
+    .nav-user-dropdown {
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-top: 2px solid var(--black);
+        margin-top: 0.5rem;
+        width: 100%;
+        background: var(--gray-light);
+    }
+    .nav-user-dropdown .dropdown-item {
+        padding: 1rem 1.1rem;
+        border-bottom: 1px solid var(--gray-dark);
+    }
+}
 
 /* ── Comment Section ────────────────────────────────────────────── */
 .comment-form-wrap {
@@ -190,3 +207,47 @@ body.dark-mode .comment-form-wrap textarea { background: #111; color: var(--blac
 body.dark-mode .profile-card { background: #1a1a1a; }
 body.dark-mode .comment-history-item { background: #1a1a1a; }
 body.dark-mode .profile-meta-item strong { color: var(--black); }
+
+/* ── Avatar Edit Grid ─────────────────────────────────────────── */
+.avatar-selector-wrap {
+    border: 4px solid var(--black);
+    background: var(--white);
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 6px 6px 0 var(--black);
+}
+.avatar-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+.preset-avatar-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    border: 3px solid var(--black);
+    background: var(--white);
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--black);
+    transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.preset-avatar-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--black);
+    background: var(--black);
+}
+body.dark-mode .avatar-selector-wrap {
+    background: #1a1a1a;
+    border-color: var(--gray-dark);
+}
+body.dark-mode .preset-avatar-btn {
+    background: #111;
+    border-color: var(--gray-dark);
+}
+body.dark-mode .preset-avatar-btn:hover {
+    background: var(--white);
+}

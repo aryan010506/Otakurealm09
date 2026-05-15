@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    OTAKU REALM — Comment System (localStorage-based)
    Auto-injects a comment section on all article & anime pages.
    Comments stored per-page; linked to authenticated users.
@@ -28,6 +28,7 @@ function addComment(pageId, pageTitle, text) {
         id:        Date.now().toString(36) + Math.random().toString(36).slice(2),
         userEmail: user.email,
         userName:  user.name,
+        userAvatar: user.avatar || null,
         text:      trimmed,
         timestamp: Date.now(),
         pageId,
@@ -64,10 +65,24 @@ function formatTime(ts) {
 
 // ── Render single comment card HTML ───────────────────────────
 function renderCommentCard(c) {
+    let avatarHtml = `<span class="comment-avatar-text">${escapeHtml(c.userName[0].toUpperCase())}</span>`;
+    if (c.userAvatar) {
+        if (c.userAvatar.startsWith('data:image')) {
+            avatarHtml = `<img src="${c.userAvatar}" class="comment-avatar-img" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+        } else {
+            avatarHtml = `<span class="comment-avatar-icon">${escapeHtml(c.userAvatar)}</span>`;
+        }
+    }
+
     return `
         <div class="comment-card" id="c-${c.id}">
             <div class="comment-header">
-                <span class="comment-author">⚡ ${escapeHtml(c.userName.toUpperCase())}</span>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                    <div class="comment-avatar" style="width:28px; height:28px; border:2px solid var(--black); display:flex; align-items:center; justify-content:center; background:var(--black); color:var(--white); font-weight:900; font-size:0.85rem; flex-shrink:0;">
+                        ${avatarHtml}
+                    </div>
+                    <span class="comment-author" style="background:none; color:var(--black); padding:0; border:none; letter-spacing:0.02em;">${escapeHtml(c.userName.toUpperCase())}</span>
+                </div>
                 <span class="comment-time">${formatTime(c.timestamp)}</span>
             </div>
             <p class="comment-text">${escapeHtml(c.text)}</p>

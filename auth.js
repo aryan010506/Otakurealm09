@@ -90,13 +90,28 @@ function saveUserWatchlist(list) {
 }
 
 // ── Expose globally ────────────────────────────────────────────
+// ── Update Avatar ──────────────────────────────────────────────
+function updateUserAvatar(avatarBase64) {
+    const email = localStorage.getItem(SESSION_KEY);
+    if (!email) return { success: false, error: 'Not logged in.' };
+    
+    const users = getUsers();
+    if (users[email]) {
+        users[email].avatar = avatarBase64;
+        saveUsers(users);
+        return { success: true, user: users[email] };
+    }
+    return { success: false, error: 'User not found in db.' };
+}
+
 window.Auth = {
     signup: authSignup,
     login: authLogin,
     logout: authLogout,
     getCurrentUser,
     getUserWatchlist,
-    saveUserWatchlist
+    saveUserWatchlist,
+    updateUserAvatar
 };
 
 // ── Nav path helper ────────────────────────────────────────────
