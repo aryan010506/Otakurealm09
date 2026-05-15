@@ -4,6 +4,7 @@
 
 // ── Utils ──────────────────────────────────────────────────────
 function escapeHtml(str) {
+    if (!str) return '';
     return String(str)
         .replace(/&/g,'&amp;').replace(/</g,'&lt;')
         .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -14,9 +15,12 @@ function formatTime(ts) {
          + ' at '
          + d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
 }
+function getLoginPath() {
+    return window.location.pathname.includes('/pages/') ? 'login.html' : 'pages/login.html';
+}
 
 // ── Render single comment card HTML ───────────────────────────
-function renderCommentCard(c) {
+function renderCommentCard(c, isReply = false) {
     let avatarHtml = `<span class="comment-avatar-text">${escapeHtml(c.userName[0].toUpperCase())}</span>`;
     if (c.userAvatar) {
         if (c.userAvatar.startsWith('data:image')) {
@@ -26,8 +30,30 @@ function renderCommentCard(c) {
         }
     }
 
+    const user = window.Auth ? window.Auth.getCurrentUser() : null;
+
+    // Only allow replying to top-level comments to keep it 1-level deep
+    let replyActionHtml = '';
+    if (!isReply && user) {
+        replyActionHtml = `<button class="reply-toggle-btn" onclick="window.Comments.toggleReplyBox('${c.id}')">REPLY</button>`;
+    } else if (!isReply && !user) {
+        replyActionHtml = `<a href="${getLoginPath()}" class="reply-toggle-btn" style="text-decoration:none;">LOGIN TO REPLY</a>`;
+    }
+
+    let replyBoxHtml = '';
+    if (!isReply && user) {
+        replyBoxHtml = `
+            <div id="reply-box-${c.id}" class="reply-box-container" style="display:none; margin-top: 1rem; border-top: 2px dashed var(--gray-light); padding-top: 1rem;">
+                <textarea id="reply-input-${c.id}" placeholder="Write a reply..." maxlength="500" rows="2" style="width:100%; border:2px solid var(--black); padding:0.5rem; font-family:var(--font-manga); font-size:0.9rem; resize:vertical;"></textarea>
+                <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:0.5rem;">
+                    <button class="btn btn-manga-alt" style="font-size:0.75rem; padding:0.2rem 0.8rem;" onclick="window.Comments.toggleReplyBox('${c.id}')">CANCEL</button>
+                    <button class="btn btn-manga" style="font-size:0.75rem; padding:0.2rem 0.8rem;" onclick="window.Comments.submitReply('${c.id}', '${escapeHtml(c.pageId)}', '${escapeHtml(c.pageTitle)}')">POST REPLY</button>
+                </div>
+            </div>`;
+    }
+
     return `
-        <div class="comment-card" id="c-${c.id}">
+        <div class="comment-card ${isReply ? 'nested-reply-card' : ''}" id="c-${c.id}" style="${isReply ? 'border: 2px solid var(--gray-light); margin-bottom: 1rem; background: var(--bg-color);' : ''}">
             <div class="comment-header">
                 <div style="display:flex; align-items:center; gap:0.5rem;">
                     <div class="comment-avatar" style="width:28px; height:28px; border:2px solid var(--black); display:flex; align-items:center; justify-content:center; background:var(--black); color:var(--white); font-weight:900; font-size:0.85rem; flex-shrink:0;">
@@ -38,11 +64,11 @@ function renderCommentCard(c) {
                 <span class="comment-time">${formatTime(c.timestamp)}</span>
             </div>
             <p class="comment-text">${escapeHtml(c.text)}</p>
+            <div class="comment-actions" style="margin-top: 0.5rem;">
+                ${replyActionHtml}
+            </div>
+            ${replyBoxHtml}
         </div>`;
-}
-
-function getLoginPath() {
-    return window.location.pathname.includes('/pages/') ? 'login.html' : 'pages/login.html';
 }
 
 // ── Inject full comment section before <footer> ───────────────
@@ -97,12 +123,38 @@ function injectCommentSection(pageId, pageTitle) {
                     return;
                 }
 
-                // Sort in memory by timestamp (newest first) to avoid requiring composite indexes
                 const comments = [];
                 snapshot.forEach(doc => comments.push({ id: doc.id, ...doc.data() }));
-                comments.sort((a, b) => b.timestamp - a.timestamp);
+                
+                // Separate into top-level and replies
+                const topLevel = comments.filter(c => !c.parentId).sort((a, b) => b.timestamp - a.timestamp);
+                const repliesByParent = {};
+                comments.filter(c => c.parentId).forEach(c => {
+                    if (!repliesByParent[c.parentId]) repliesByParent[c.parentId] = [];
+                    repliesByParent[c.parentId].push(c);
+                });
 
-                list.innerHTML = comments.map(renderCommentCard).join('');
+                let html = '';
+                topLevel.forEach(c => {
+                    html += renderCommentCard(c, false);
+                    
+                    const replies = repliesByParent[c.id] || [];
+                    if (replies.length > 0) {
+                        replies.sort((a, b) => a.timestamp - b.timestamp); // Oldest replies first
+                        
+                        html += `<button class="view-replies-btn" onclick="window.Comments.toggleReplies('${c.id}')" id="view-replies-btn-${c.id}">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-right:4px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    VIEW ${replies.length} REPL${replies.length === 1 ? 'Y' : 'IES'}
+                                 </button>`;
+                        html += `<div class="replies-container" id="replies-${c.id}" style="display:none; margin-left: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--black); margin-top: 0.5rem; margin-bottom: 2rem;">`;
+                        replies.forEach(r => {
+                            html += renderCommentCard(r, true);
+                        });
+                        html += `</div>`;
+                    }
+                });
+
+                list.innerHTML = html;
                 countEl.textContent = `${comments.length} comment${comments.length !== 1 ? 's' : ''} on this page`;
             });
     } else {
@@ -136,11 +188,11 @@ function injectCommentSection(pageId, pageTitle) {
                 text:      text,
                 timestamp: Date.now(),
                 pageId,
-                pageTitle
+                pageTitle,
+                parentId: null
             };
 
             try {
-                // Instantly disable button to prevent double-post
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'POSTING...';
 
@@ -159,6 +211,90 @@ function injectCommentSection(pageId, pageTitle) {
         });
     }
 }
+
+// ── Global Actions for Replies ─────────────────────────────
+window.Comments = {
+    toggleReplyBox: function(commentId) {
+        const box = document.getElementById(`reply-box-${commentId}`);
+        if (box) {
+            box.style.display = box.style.display === 'none' ? 'block' : 'none';
+        }
+    },
+    
+    toggleReplies: function(commentId) {
+        const container = document.getElementById(`replies-${commentId}`);
+        const btn = document.getElementById(`view-replies-btn-${commentId}`);
+        if (container && btn) {
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-right:4px;"><polyline points="18 15 12 9 6 15"></polyline></svg> HIDE REPLIES`;
+            } else {
+                container.style.display = 'none';
+                const count = container.children.length;
+                btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-right:4px;"><polyline points="6 9 12 15 18 9"></polyline></svg> VIEW ${count} REPL${count === 1 ? 'Y' : 'IES'}`;
+            }
+        }
+    },
+
+    submitReply: async function(parentId, pageId, pageTitle) {
+        const user = window.Auth ? window.Auth.getCurrentUser() : null;
+        if (!user) return;
+
+        const input = document.getElementById(`reply-input-${parentId}`);
+        if (!input) return;
+
+        const text = input.value.trim();
+        if (!text) {
+            typeof showToast === 'function' && showToast('Reply cannot be empty.', 'error');
+            return;
+        }
+        if (text.length > 500) {
+            typeof showToast === 'function' && showToast('Reply is too long.', 'error');
+            return;
+        }
+
+        const commentData = {
+            userEmail: user.email,
+            userName:  user.name,
+            userAvatar: user.avatar || null,
+            text:      text,
+            timestamp: Date.now(),
+            pageId,
+            pageTitle,
+            parentId: parentId
+        };
+
+        try {
+            await window.db.collection('comments').add(commentData);
+            input.value = '';
+            window.Comments.toggleReplyBox(parentId); // Close box
+            
+            // Auto-open replies if they were hidden
+            const repliesContainer = document.getElementById(`replies-${parentId}`);
+            if (repliesContainer && repliesContainer.style.display === 'none') {
+                window.Comments.toggleReplies(parentId);
+            }
+            
+            typeof showToast === 'function' && showToast('Reply posted! 🌍', 'success');
+        } catch (err) {
+            console.error("Firebase Error: ", err);
+            typeof showToast === 'function' && showToast('Failed to post reply.', 'error');
+        }
+    },
+
+    getAllUserComments: async function(email) {
+        if (!window.db) return [];
+        try {
+            const snapshot = await window.db.collection('comments').where('userEmail', '==', email).get();
+            const comments = [];
+            snapshot.forEach(doc => comments.push({ id: doc.id, ...doc.data() }));
+            return comments.sort((a, b) => b.timestamp - a.timestamp);
+        } catch (e) {
+            console.error("Error fetching user comments:", e);
+            return [];
+        }
+    }
+};
 
 // ── Auto-detect page on DOMContentLoaded ───────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -193,21 +329,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 200); // Give Firebase a moment to init
 });
-
-// Since we migrated to Firebase, we need a helper to fetch all user comments for the profile page
-async function getAllUserComments(email) {
-    if (!window.db) return [];
-    try {
-        const snapshot = await window.db.collection('comments').where('userEmail', '==', email).get();
-        const comments = [];
-        snapshot.forEach(doc => comments.push({ id: doc.id, ...doc.data() }));
-        return comments.sort((a, b) => b.timestamp - a.timestamp);
-    } catch (e) {
-        console.error("Error fetching user comments:", e);
-        return [];
-    }
-}
-
-window.Comments = {
-    getAllUserComments
-};
