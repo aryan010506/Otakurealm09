@@ -46,7 +46,6 @@ function authSignup({ name, age, email, password }) {
     if (!password || password.length < 6) {
         return { success: false, error: 'Password must be at least 6 characters.' };
     }
-    // Simple hash — not cryptographically secure, but fine for a client-only app
     const hashed = btoa(unescape(encodeURIComponent(password)));
     users[email] = { name: name.trim(), age: ageNum, email, password: hashed, createdAt: Date.now() };
     saveUsers(users);
@@ -100,6 +99,11 @@ window.Auth = {
     saveUserWatchlist
 };
 
+// ── Nav path helper ────────────────────────────────────────────
+function getLoginPagePath() {
+    return window.location.pathname.includes('/pages/') ? '' : 'pages/';
+}
+
 // ── Update nav to reflect login state ─────────────────────────
 function updateNavAuth() {
     const user = getCurrentUser();
@@ -109,38 +113,43 @@ function updateNavAuth() {
     if (user) {
         container.innerHTML = `
             <div class="nav-user-menu" id="nav-user-menu">
-                <button class="btn btn-manga-alt nav-user-btn" id="nav-user-trigger" style="font-size:0.8rem; padding:0.2rem 0.6rem; white-space:nowrap;">
-                    ⚡ ${user.name.toUpperCase().split(' ')[0]}
+                <button class="btn btn-manga-alt nav-user-btn" id="nav-user-trigger"
+                    style="font-size:0.8rem; padding:0.2rem 0.7rem; white-space:nowrap;">
+                    ⚡ ${user.name.toUpperCase().split(' ')[0]} ▾
                 </button>
-                <div class="nav-user-dropdown" id="nav-user-dropdown" style="display:none;">
-                    <a href="${getLoginPagePath()}profile.html" class="dropdown-item">MY PROFILE</a>
-                    <a href="${getLoginPagePath()}watchlist.html" class="dropdown-item">MY WATCHLIST</a>
-                    <button class="dropdown-item" id="nav-logout-btn">LOGOUT</button>
+                <div class="nav-user-dropdown" id="nav-user-dropdown">
+                    <a href="${getLoginPagePath()}profile.html" class="dropdown-item">👤 MY PROFILE</a>
+                    <a href="${getLoginPagePath()}watchlist.html" class="dropdown-item">📋 MY WATCHLIST</a>
+                    <button class="dropdown-item" id="nav-logout-btn">🚪 LOGOUT</button>
                 </div>
             </div>`;
-        document.getElementById('nav-user-trigger').addEventListener('click', (e) => {
+
+        const trigger = document.getElementById('nav-user-trigger');
+        const dd      = document.getElementById('nav-user-dropdown');
+
+        trigger.addEventListener('click', (e) => {
             e.stopPropagation();
-            const dd = document.getElementById('nav-user-dropdown');
-            dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+            dd.classList.toggle('open');
         });
-        document.addEventListener('click', () => {
-            const dd = document.getElementById('nav-user-dropdown');
-            if (dd) dd.style.display = 'none';
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('nav-user-menu');
+            if (menu && !menu.contains(e.target)) {
+                const d = document.getElementById('nav-user-dropdown');
+                if (d) d.classList.remove('open');
+            }
         });
         document.getElementById('nav-logout-btn').addEventListener('click', () => {
             authLogout();
-            showToast && showToast('Logged out. See you next time! 👋', 'info');
+            typeof showToast === 'function' && showToast('Logged out. See you next time! 👋', 'info');
             setTimeout(() => window.location.reload(), 800);
         });
+
     } else {
         const loginPath = getLoginPagePath() + 'login.html';
-        container.innerHTML = `<a href="${loginPath}" class="btn btn-manga" style="font-size:0.8rem; padding:0.2rem 0.8rem; text-decoration:none; white-space:nowrap;">LOGIN / SIGN UP</a>`;
+        container.innerHTML = `<a href="${loginPath}" class="btn btn-manga"
+            style="font-size:0.8rem; padding:0.2rem 0.8rem; text-decoration:none; white-space:nowrap;">
+            LOGIN / SIGN UP</a>`;
     }
-}
-
-function getLoginPagePath() {
-    // Detect if we are in /pages/ subdir
-    return window.location.pathname.includes('/pages/') ? '' : 'pages/';
 }
 
 document.addEventListener('DOMContentLoaded', updateNavAuth);

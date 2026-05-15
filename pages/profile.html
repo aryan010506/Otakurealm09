@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile — Otaku Realm</title>
+    <meta name="description" content="Your Otaku Realm profile — view your comment history and account details.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=4.2">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script>
+        if (localStorage.getItem('manga-theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <nav id="navbar" class="manga-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="logo">
+                <span class="logo-text">OTAKU</span>
+                <span class="logo-accent">REALM</span>
+                <span class="logo-jp">オタク</span>
+            </a>
+            <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="Search Topics..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="nav-auth-btn"></li>
+                <li><button id="theme-toggle" class="btn btn-manga-alt px-2" style="padding:0.2rem 0.5rem;font-size:0.8rem;">🌙 NIGHT MODE</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero manga-panel" style="min-height:35vh;">
+        <div class="hero-content" style="grid-template-columns:1fr;">
+            <div class="hero-text-wrap" style="text-align:center;">
+                <p class="hero-tag">ACCOUNT — PROFILE</p>
+                <h1 class="hero-title" style="font-size:3.5rem;">MY <span class="text-outline">PROFILE</span></h1>
+                <p class="hero-sub" style="margin-bottom:0;">Your account details and comment history.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="section bg-dots">
+        <div class="container" id="profile-content">
+            <div class="auth-gate" id="auth-gate" style="display:none;">
+                <span class="auth-gate-kanji">鍵</span>
+                <h2>ACCESS DENIED</h2>
+                <p>You must be logged in to view your profile.</p>
+                <a href="login.html" class="btn btn-manga">LOGIN / SIGN UP</a>
+            </div>
+
+            <div id="profile-main" style="display:none;">
+                <div class="profile-card">
+                    <div class="profile-avatar" id="profile-avatar">人</div>
+                    <div class="profile-info">
+                        <h2 id="profile-name">—</h2>
+                        <p id="profile-email" style="font-weight:700;opacity:0.65;font-size:0.9rem;margin:0.3rem 0;"></p>
+                        <div class="profile-meta">
+                            <div class="profile-meta-item">AGE<strong id="profile-age">—</strong></div>
+                            <div class="profile-meta-item">MEMBER SINCE<strong id="profile-since">—</strong></div>
+                            <div class="profile-meta-item">COMMENTS<strong id="profile-comment-count">0</strong></div>
+                            <div class="profile-meta-item">WATCHLIST<strong id="profile-watchlist-count">0</strong></div>
+                        </div>
+                        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+                            <a href="watchlist.html" class="btn btn-manga" style="font-size:0.85rem;">📋 MY WATCHLIST</a>
+                            <button id="profile-logout-btn" class="btn btn-manga-alt" style="font-size:0.85rem;">🚪 LOGOUT</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header manga-header" style="margin-bottom:2rem;">
+                    <h2 class="section-title">COMMENT <span>HISTORY</span></h2>
+                    <div class="header-line"></div>
+                </div>
+                <div id="comment-history-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="manga-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="brand"><h2>OTAKU REALM</h2><p>The ultimate manga-style anime blog. No fluff. Just raw data.</p></div>
+                <div class="footer-links"><a href="../index.html">← BACK TO HOME</a></div>
+            </div>
+            <div class="footer-bottom"><p>© 2026 OTAKU REALM.</p></div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
+    <script src="../comments.js"></script>
+    <script src="../search.js?v=5.0"></script>
+    <script>
+    function escapeProfileHtml(str) {
+        return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const user = window.Auth ? window.Auth.getCurrentUser() : null;
+        if (!user) { document.getElementById('auth-gate').style.display = 'block'; return; }
+        document.getElementById('profile-main').style.display = 'block';
+
+        const initials = user.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+        document.getElementById('profile-avatar').textContent = initials || '人';
+        document.getElementById('profile-name').textContent   = user.name.toUpperCase();
+        document.getElementById('profile-email').textContent  = user.email;
+        document.getElementById('profile-age').textContent    = user.age + ' yrs';
+        document.getElementById('profile-since').textContent  = new Date(user.createdAt).toLocaleDateString('en-IN',{month:'short',year:'numeric'});
+        document.getElementById('profile-watchlist-count').textContent = window.Auth.getUserWatchlist().length;
+
+        const allComments = window.Comments ? window.Comments.getAllUserComments(user.email) : [];
+        document.getElementById('profile-comment-count').textContent = allComments.length;
+
+        const historyEl = document.getElementById('comment-history-list');
+        if (allComments.length === 0) {
+            historyEl.innerHTML = `<div style="text-align:center;padding:4rem 2rem;border:3px dashed var(--gray-light);"><p style="font-weight:700;font-size:1.1rem;opacity:0.5;">NO COMMENTS YET</p><p style="font-weight:600;opacity:0.4;font-size:0.9rem;">Head over to any page and start a discussion!</p><a href="../index.html" class="btn btn-manga" style="margin-top:1.5rem;">EXPLORE TOPICS</a></div>`;
+            return;
+        }
+
+        const pageLabelMap = {
+            'reviews':'📋 Reviews','character-dives':'🧠 Character Dives','watch-orders':'📺 Watch Orders',
+            'top-lists':'🏆 Top Lists','manga-vs-anime':'📖 Manga vs Anime','explainers':'💡 Explainers'
+        };
+
+        historyEl.innerHTML = allComments.map(c => {
+            const label = pageLabelMap[c.pageId] || (c.pageId.startsWith('anime-') ? '🎌 Anime Discussion' : '📝 ' + (c.pageTitle || c.pageId));
+            const date  = new Date(c.timestamp).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) + ' at ' + new Date(c.timestamp).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+            let href = '#';
+            if (c.pageId.startsWith('anime-')) href = `anime-detail.html?id=${c.pageId.replace('anime-','')}&source=jikan#comments-section`;
+            else if (pageLabelMap[c.pageId]) href = `${c.pageId}.html#comments-section`;
+            return `<div class="comment-history-item"><span class="page-tag">${label}</span><p class="comment-text" style="margin:0.5rem 0;">${escapeProfileHtml(c.text)}</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem;flex-wrap:wrap;gap:0.4rem;"><span class="comment-time" style="font-size:0.72rem;font-weight:700;opacity:0.5;">${date}</span><a href="${href}" class="btn btn-manga-alt" style="font-size:0.72rem;padding:0.15rem 0.6rem;">VIEW PAGE →</a></div></div>`;
+        }).join('');
+
+        document.getElementById('profile-logout-btn').addEventListener('click', () => {
+            window.Auth.logout();
+            window.location.href = '../index.html';
+        });
+    });
+    </script>
+</body>
+</html>
